@@ -203,7 +203,7 @@
   --cap: 0.72;
   --ink: 0.65625;
   --inset-end: 0.125;
-  --word: clamp(2rem, 2.6vw, 2.375rem);
+  --word: clamp(1rem, 1.3vw, 1.1875rem);
   display: inline-flex;
   align-items: center;
   gap: calc(var(--word) * (var(--cap) / var(--phi) - var(--inset-end) * var(--cap) * var(--phi) / var(--ink)));
