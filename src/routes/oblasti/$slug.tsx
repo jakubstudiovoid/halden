@@ -27,6 +27,10 @@ export function PracticePage() {
     .map((id) => people.find((person) => person.slug === id))
     .filter((person) => Boolean(person));
 
+  const index = practices.findIndex((item) => item.slug === slug);
+  const previous = index > 0 ? practices[index - 1] : null;
+  const next = index >= 0 && index < practices.length - 1 ? practices[index + 1] : null;
+
   return (
     <article className="pb-24">
       <Crumbs
@@ -95,6 +99,40 @@ export function PracticePage() {
           {copy.writeAbout}
         </RouteLink>
       </div>
+      <nav aria-label={copy.areaNav} className="mx-auto mt-20 max-w-6xl border-t border-line px-6 md:px-16">
+        <div className="grid sm:grid-cols-2">
+          {previous ? (
+            <RouteLink
+              to={links.practice(previous.slug)}
+              className="group flex items-start gap-6 border-b border-line py-8 sm:border-r sm:border-b-0 sm:pr-10"
+            >
+              <span aria-hidden="true" className="pager-arrow is-back">
+                ←
+              </span>
+              <span className="min-w-0">
+                <span className="block text-sm text-muted">{copy.areaPrev}</span>
+                <span className="mt-3 block text-2xl font-normal tracking-tight">{previous.title}</span>
+              </span>
+            </RouteLink>
+          ) : (
+            <span className="hidden sm:block" />
+          )}
+          {next ? (
+            <RouteLink
+              to={links.practice(next.slug)}
+              className="group flex items-start justify-end gap-6 py-8 text-right sm:pl-10"
+            >
+              <span className="min-w-0">
+                <span className="block text-sm text-muted">{copy.areaNext}</span>
+                <span className="mt-3 block text-2xl font-normal tracking-tight">{next.title}</span>
+              </span>
+              <span aria-hidden="true" className="pager-arrow is-next">
+                →
+              </span>
+            </RouteLink>
+          ) : null}
+        </div>
+      </nav>
     </article>
   );
 }

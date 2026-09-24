@@ -257,9 +257,25 @@
   transition: color 700ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.topic-option.is-current,
-.topic-option:hover {
+.pager-arrow {
+  display: inline-block;
+  margin-top: 0.15rem;
+  color: var(--muted);
+  transition:
+    transform 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .pager-arrow {
   color: var(--fg);
+}
+
+.group:hover .pager-arrow.is-next {
+  transform: translateX(0.4rem);
+}
+
+.group:hover .pager-arrow.is-back {
+  transform: translateX(-0.4rem);
 }
 
 .brand-lockup {
@@ -393,7 +409,8 @@
   .btn,
   .btn-line,
   .btn-solid,
-  .press.btn {
+  .press.btn,
+  .pager-arrow {
     transition: none;
   }
 
