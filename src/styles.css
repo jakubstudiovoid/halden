@@ -285,6 +285,13 @@
   color: var(--field-fg);
 }
 
+.field-wash picture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+
 .hero-plate {
   position: absolute;
   inset: 0;
@@ -299,7 +306,10 @@
 
 @media (max-width: 767px) {
   .hero-plate {
-    object-position: 62% 16%;
+    inset: 0 0 auto;
+    height: auto;
+    object-fit: fill;
+    object-position: center top;
   }
 }
 

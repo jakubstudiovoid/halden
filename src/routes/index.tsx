@@ -35,17 +35,20 @@ export function Home() {
         }}
       />
       <section className="field-wash relative isolate overflow-hidden">
-        <img
-          src="/media/team.jpg"
-          alt={ui.heroAlt}
-          width={2000}
-          height={1116}
-          className="hero-plate"
-          fetchPriority="high"
-          decoding="async"
-        />
+        <picture>
+          <source media="(min-width: 768px)" srcSet="/media/team.jpg" />
+          <img
+            src="/media/team-mobile.jpg"
+            alt={ui.heroAlt}
+            width={1280}
+            height={2293}
+            className="hero-plate"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
         <div className="hero-wash" aria-hidden="true" />
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col px-6 pt-32 pb-16 md:px-16 md:pt-36 md:pb-20">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col px-6 pt-[70vw] pb-16 md:px-16 md:pt-36 md:pb-20">
           <div className="mt-auto">
             <div className="reveal flex flex-wrap items-baseline gap-x-6 gap-y-1 text-xs tracking-widest text-field-muted uppercase">
               <p>{ui.office}</p>
