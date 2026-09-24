@@ -328,36 +328,83 @@ function CookieBar() {
   );
 }
 
+function inView(el: HTMLElement) {
+  const rect = el.getBoundingClientRect();
+  if (rect.width === 0 && rect.height === 0) return false;
+  const view = window.innerHeight;
+  const visible = Math.min(rect.bottom, view) - Math.max(rect.top, 0);
+  return visible > 24;
+}
+
 function useContentReveal() {
   const path = useRouterState({ select: (state) => state.location.pathname });
   useEffect(() => {
-    const nodes = Array.from(document.querySelectorAll<HTMLElement>("#obsah .reveal, footer .reveal"));
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      for (const node of nodes) node.classList.add("is-in");
-      return;
-    }
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let batch = 0;
     let last = 0;
+
+    const collect = () =>
+      Array.from(document.querySelectorAll<HTMLElement>("#obsah .reveal, footer .reveal"));
+
+    const mark = (el: HTMLElement, index: number) => {
+      if (el.dataset.in != null) return;
+      if (!reduced) el.style.transitionDelay = `${Math.min(index, 5) * 180}ms`;
+      el.dataset.in = "";
+    };
+
+    const flush = () => {
+      const now = performance.now();
+      if (now - last > 240) batch = 0;
+      last = now;
+      const visible = collect()
+        .filter((el) => el.dataset.in == null && (reduced || inView(el)))
+        .sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+      for (const el of visible) {
+        mark(el, batch);
+        batch += 1;
+      }
+    };
+
+    if (reduced) {
+      for (const el of collect()) mark(el, 0);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
+        const hit = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target as HTMLElement)
+          .filter((el) => el.dataset.in == null);
+        if (hit.length === 0) return;
         const now = performance.now();
         if (now - last > 240) batch = 0;
         last = now;
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        for (const entry of visible) {
-          const el = entry.target as HTMLElement;
-          el.style.transitionDelay = `${Math.min(batch, 5) * 180}ms`;
+        hit.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+        for (const el of hit) {
+          mark(el, batch);
           batch += 1;
-          el.classList.add("is-in");
           observer.unobserve(el);
         }
       },
-      { threshold: 0.14, rootMargin: "0px 0px -6% 0px" },
+      { threshold: 0.08, rootMargin: "0px" },
     );
-    for (const node of nodes) observer.observe(node);
-    return () => observer.disconnect();
+
+    for (const el of collect()) observer.observe(el);
+
+    const frame = requestAnimationFrame(flush);
+    const soon = window.setTimeout(flush, 90);
+    const afterFade = window.setTimeout(flush, 760);
+    const onScroll = () => flush();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.clearTimeout(soon);
+      window.clearTimeout(afterFade);
+      window.removeEventListener("scroll", onScroll);
+      observer.disconnect();
+    };
   }, [path]);
 }
 

@@ -96,7 +96,7 @@
   transform: translateY(0.45rem);
 }
 
-.js .reveal.is-in {
+.js .reveal[data-in] {
   opacity: 1;
   transform: none;
 }
