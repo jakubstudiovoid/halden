@@ -100,9 +100,16 @@ function Header() {
         <div className="flex items-center gap-1">
           <Link
             to="/kontakt"
+            aria-current={path === "/kontakt" ? "page" : undefined}
             className={cn(
-              "link-draw hidden min-h-11 items-center text-xs tracking-widest uppercase sm:inline-flex",
-              overField ? "text-field-fg" : "text-fg",
+              "hidden min-h-11 items-center text-xs tracking-widest uppercase transition-colors duration-1000 sm:inline-flex",
+              overField
+                ? path === "/kontakt"
+                  ? "text-field-fg"
+                  : "text-field-muted hover:text-field-fg"
+                : path === "/kontakt"
+                  ? "text-fg"
+                  : "text-muted hover:text-fg",
             )}
           >
             Kontakt
