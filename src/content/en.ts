@@ -409,7 +409,7 @@ export const ui = {
   crumbs: "Breadcrumb",
   heroTitle: "Calm in decisions that carry weight.",
   heroLede: "We act for owners, management and families. Few matters at once. Each one to the end.",
-  heroCta: "Arrange a conversation",
+  heroCta: "Arrange a consultation",
   heroMore: "Our philosophy",
   heroAlt: "The Halden team.",
   quote: "Halden is not a network. It is a firm in which the partner who takes a matter also leads it.",
