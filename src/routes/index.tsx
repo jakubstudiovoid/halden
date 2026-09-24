@@ -28,8 +28,18 @@ function Home() {
           knowsAbout: practices.map((item) => item.title),
         }}
       />
-      <section className="field-wash">
-        <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 pt-32 pb-16 md:px-16 md:pt-36 md:pb-20">
+      <section className="field-wash relative isolate overflow-hidden">
+        <img
+          src="/media/team.jpg"
+          alt="Tým kanceláře Halden."
+          width={2000}
+          height={1116}
+          className="hero-plate"
+          fetchPriority="high"
+          decoding="async"
+        />
+        <div className="hero-wash" aria-hidden="true" />
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col px-6 pt-32 pb-16 md:px-16 md:pt-36 md:pb-20">
           <div className="flex items-center justify-between gap-4 text-xs tracking-widest text-field-muted uppercase">
             <p>Advokátní kancelář</p>
             <p>Praha · Vídeň</p>

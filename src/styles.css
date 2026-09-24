@@ -207,8 +207,36 @@
 }
 
 .field-wash {
-  background: linear-gradient(168deg, #445e76 0%, #3d5470 44%, #243446 100%);
+  background: #1b2834;
   color: var(--field-fg);
+}
+
+.hero-plate {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 767px) {
+  .hero-plate {
+    object-position: 62% 16%;
+  }
+}
+
+.hero-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgb(18 28 40 / 0.2) 0%, rgb(18 28 40 / 0.08) 38%, rgb(16 24 36 / 0.72) 100%),
+    linear-gradient(168deg, rgb(68 94 118 / 0.5) 0%, rgb(61 84 112 / 0.46) 44%, rgb(36 52 70 / 0.58) 100%);
 }
 
 .press {
