@@ -108,7 +108,7 @@ function Home() {
                 className="group grid gap-3 py-8 md:grid-cols-12 md:items-baseline md:gap-8 md:py-10"
               >
                 <span className="text-xs tracking-widest text-muted tabular-nums md:col-span-1">{item.index}</span>
-                <span className="display text-3xl transition-colors duration-700 group-hover:text-muted md:col-span-6 md:text-4xl">
+                <span className="display text-3xl transition-colors duration-1000 group-hover:text-muted md:col-span-6 md:text-4xl">
                   {item.title}
                 </span>
                 <span className="text-sm leading-relaxed text-muted md:col-span-5">{item.summary}</span>
@@ -162,7 +162,7 @@ function Home() {
                 className="group grid items-baseline gap-y-2 py-7 md:grid-cols-12 md:py-8"
               >
                 <span className="text-xs tracking-widest text-muted md:col-span-2">{person.given}</span>
-                <span className="display text-2xl transition-colors duration-700 group-hover:text-muted md:col-span-6 md:text-3xl">
+                <span className="display text-2xl transition-colors duration-1000 group-hover:text-muted md:col-span-6 md:text-3xl">
                   {person.name}
                 </span>
                 <span className="text-sm text-muted md:col-span-4">
@@ -189,7 +189,7 @@ function Home() {
                 <time dateTime={note.date} className="text-xs tracking-widest text-muted uppercase md:col-span-3">
                   {note.displayDate}
                 </time>
-                <span className="text-xl font-normal tracking-tight transition-colors duration-700 group-hover:text-muted md:col-span-8 md:text-2xl">
+                <span className="text-xl font-normal tracking-tight transition-colors duration-1000 group-hover:text-muted md:col-span-8 md:text-2xl">
                   {note.title}
                 </span>
               </Link>

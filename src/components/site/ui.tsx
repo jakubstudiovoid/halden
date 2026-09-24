@@ -100,7 +100,7 @@ export function Crumbs({ items }: { items: { to?: string; label: string }[] }) {
             <li key={item.label} className="flex items-center gap-3">
               {index > 0 ? <span aria-hidden="true">/</span> : null}
               {item.to && !last ? (
-                <Link to={item.to} className="transition-colors duration-500 hover:text-fg">
+                <Link to={item.to} className="transition-colors duration-1000 hover:text-fg">
                   {item.label}
                 </Link>
               ) : (

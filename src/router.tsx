@@ -8,5 +8,8 @@ export function getRouter() {
     defaultErrorComponent: AppErrorComponent,
     defaultPreload: "intent",
     scrollRestoration: true,
+    defaultViewTransition: {
+      types: ({ pathChanged }) => (pathChanged ? ["fade"] : false),
+    },
   });
 }

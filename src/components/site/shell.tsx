@@ -14,7 +14,7 @@ function ThemeButton({ className }: { className?: string }) {
       aria-label="Přepnout barevný režim"
       onClick={toggleTheme}
       className={cn(
-        "press inline-flex size-11 items-center justify-center text-fg transition-colors duration-500 hover:text-muted",
+        "press inline-flex size-11 items-center justify-center text-fg transition-colors duration-1000 hover:text-muted",
         className,
       )}
     >
@@ -40,7 +40,7 @@ function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-40 border-b transition-colors duration-700",
+        "fixed inset-x-0 top-0 z-40 border-b transition-colors duration-1000",
         overField ? "border-transparent bg-transparent" : "border-line bg-bg",
       )}
     >
@@ -62,7 +62,7 @@ function Header() {
                 to={item.to}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "text-xs tracking-widest uppercase transition-colors duration-700",
+                  "text-xs tracking-widest uppercase transition-colors duration-1000",
                   overField
                     ? active
                       ? "text-field-fg"
@@ -169,7 +169,7 @@ function Footer() {
           <ul className="space-y-3">
             {nav.map((item) => (
               <li key={item.to}>
-                <Link to={item.to} className="text-muted transition-colors duration-500 hover:text-fg">
+                <Link to={item.to} className="text-muted transition-colors duration-1000 hover:text-fg">
                   {item.label}
                 </Link>
               </li>
@@ -177,17 +177,17 @@ function Footer() {
           </ul>
           <ul className="space-y-3">
             <li>
-              <Link to="/kontakt" className="text-muted transition-colors duration-500 hover:text-fg">
+              <Link to="/kontakt" className="text-muted transition-colors duration-1000 hover:text-fg">
                 Kontakt
               </Link>
             </li>
             <li>
-              <Link to="/soukromi" className="text-muted transition-colors duration-500 hover:text-fg">
+              <Link to="/soukromi" className="text-muted transition-colors duration-1000 hover:text-fg">
                 Soukromí
               </Link>
             </li>
             <li>
-              <Link to="/cookies" className="text-muted transition-colors duration-500 hover:text-fg">
+              <Link to="/cookies" className="text-muted transition-colors duration-1000 hover:text-fg">
                 Cookies
               </Link>
             </li>
@@ -195,13 +195,13 @@ function Footer() {
               <button
                 type="button"
                 onClick={() => setSettingsOpen(true)}
-                className="text-left text-muted transition-colors duration-500 hover:text-fg"
+                className="text-left text-muted transition-colors duration-1000 hover:text-fg"
               >
                 Nastavení cookies
               </button>
             </li>
             <li>
-              <a href="/llms.txt" className="text-muted transition-colors duration-500 hover:text-fg">
+              <a href="/llms.txt" className="text-muted transition-colors duration-1000 hover:text-fg">
                 Pro vyhledávače
               </a>
             </li>

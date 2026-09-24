@@ -91,10 +91,10 @@
 
 .js .reveal {
   opacity: 0;
-  transform: translateY(0.65rem);
+  transform: translateY(0.35rem);
   transition:
-    opacity 1400ms cubic-bezier(0.2, 0, 0, 1),
-    transform 1400ms cubic-bezier(0.2, 0, 0, 1);
+    opacity 1700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1700ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .js .reveal.is-in {
@@ -103,7 +103,7 @@
 }
 
 .photo {
-  transition: transform 1200ms cubic-bezier(0.2, 0, 0, 1);
+  transition: transform 1800ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .photo-frame:hover .photo {
@@ -128,7 +128,7 @@
   background-position: 0 100%;
   background-repeat: no-repeat;
   background-size: 0 1px;
-  transition: background-size 1100ms cubic-bezier(0.2, 0, 0, 1);
+  transition: background-size 1400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .link-draw:hover {
@@ -156,8 +156,8 @@
   border-width: 0.08em;
   border-color: var(--btn-ink);
   transition:
-    background-color 680ms cubic-bezier(0.22, 1, 0.36, 1),
-    color 680ms cubic-bezier(0.22, 1, 0.36, 1);
+    background-color 980ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 980ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .field-wash .btn,
@@ -189,7 +189,7 @@
   padding-block: 0.95rem;
   color: var(--fg);
   outline: none;
-  transition: border-color 700ms cubic-bezier(0.2, 0, 0, 1);
+  transition: border-color 1000ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .line-field:focus {
@@ -210,18 +210,48 @@
 }
 
 .press {
-  transition: scale 150ms ease-out;
+  transition: scale 420ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .press:active {
-  scale: 0.96;
+  scale: 0.985;
 }
 
 .press.btn {
   transition:
-    scale 150ms ease-out,
-    background-color 680ms cubic-bezier(0.22, 1, 0.36, 1),
-    color 680ms cubic-bezier(0.22, 1, 0.36, 1);
+    scale 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 980ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 980ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::view-transition-group(root) {
+  animation-duration: 1.4s;
+}
+
+::view-transition-old(root) {
+  animation-name: vt-fade-out;
+  animation-duration: 1.4s;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+::view-transition-new(root) {
+  animation-name: vt-fade-in;
+  animation-duration: 1.4s;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -244,5 +274,11 @@
   .btn-solid,
   .press.btn {
     transition: none;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none;
   }
 }

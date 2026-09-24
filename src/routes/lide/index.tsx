@@ -25,7 +25,7 @@ function PeoplePage() {
           <li key={person.slug} className="border-t border-line pt-6">
             <Link to="/lide/$slug" params={{ slug: person.slug }} className="group block">
               <span className="text-xs tracking-widest text-muted">{person.given}</span>
-              <span className="mt-8 block text-2xl font-normal tracking-tight transition-colors duration-700 group-hover:text-muted">
+              <span className="mt-8 block text-2xl font-normal tracking-tight transition-colors duration-1000 group-hover:text-muted">
                 {person.name}
               </span>
               <span className="mt-2 block text-sm text-muted">{person.role}</span>
