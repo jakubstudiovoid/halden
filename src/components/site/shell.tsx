@@ -198,6 +198,7 @@ function Footer() {
             <span>HALDEN</span>
           </BrandLink>
           <p className="mt-8 max-w-xs text-sm leading-relaxed text-muted">{ui.footerBlurb}</p>
+          <p className="mt-5 max-w-xs text-xs leading-relaxed text-muted/45">{ui.disclaimer}</p>
         </div>
         <nav aria-label={ui.navFooter} className="reveal grid grid-cols-2 gap-8 text-sm md:col-span-4">
           <ul className="space-y-3">
@@ -239,22 +240,19 @@ function Footer() {
           </a>
         </div>
       </div>
-      <div className="reveal mx-auto grid max-w-6xl gap-8 border-t border-line px-6 py-10 md:grid-cols-12 md:items-start md:px-16">
-        <p className="text-sm leading-relaxed text-muted md:col-span-6">{ui.disclaimer}</p>
-        <div className="flex flex-col items-start gap-3 text-muted md:col-span-6 md:items-end md:text-right">
-          <p className="text-xs tracking-widest uppercase">
-            © {new Date().getFullYear()} {site.name}
-          </p>
-          <ThemeWord />
-          <a
-            href="https://studiovoid.cz"
-            target="_blank"
-            rel="noreferrer"
-            className="text-xs tracking-widest uppercase transition-colors duration-1000 hover:text-fg"
-          >
-            {ui.creditBefore} · {ui.creditAfter}
-          </a>
-        </div>
+      <div className="reveal mx-auto flex max-w-6xl flex-col gap-3 border-t border-line px-6 py-8 md:flex-row md:items-center md:justify-between md:px-16">
+        <p className="text-xs tracking-widest text-muted uppercase">
+          © {new Date().getFullYear()} {site.name}
+        </p>
+        <ThemeWord />
+        <a
+          href="https://studiovoid.cz"
+          target="_blank"
+          rel="noreferrer"
+          className="text-xs tracking-widest uppercase text-muted transition-colors duration-1000 hover:text-fg"
+        >
+          {ui.creditBefore} · {ui.creditAfter}
+        </a>
       </div>
     </footer>
   );
