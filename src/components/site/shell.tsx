@@ -31,7 +31,7 @@ function Header() {
   const overField = path === "/" && !scrolled;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.72);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -41,19 +41,19 @@ function Header() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-40 border-b transition-colors duration-700",
-        overField ? "border-transparent bg-transparent" : "border-line bg-bg/92 backdrop-blur-md",
+        overField ? "border-transparent bg-transparent" : "border-line bg-bg",
       )}
     >
-      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-6 px-6 md:px-12">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-8 px-6 md:px-16">
         <Link
           to="/"
           aria-label="Halden, úvod"
           className={cn("flex items-center gap-3", overField ? "text-field-fg" : "text-fg")}
         >
-          <Mark tone={overField ? "on-field" : "default"} className="size-7" />
-          <span className="text-xs tracking-widest">HALDEN</span>
+          <Mark tone={overField ? "on-field" : "default"} className="size-6" />
+          {overField ? null : <span className="text-xs tracking-widest">HALDEN</span>}
         </Link>
-        <nav aria-label="Hlavní" className="hidden items-center gap-8 lg:flex">
+        <nav aria-label="Hlavní" className="hidden items-center gap-9 lg:flex">
           {nav.map((item) => {
             const active = path === item.to || path.startsWith(`${item.to}/`);
             return (
@@ -155,7 +155,7 @@ function Footer() {
   const { setSettingsOpen } = usePrefs();
   return (
     <footer className="border-t border-line">
-      <div className="mx-auto grid max-w-6xl gap-16 px-6 py-24 md:grid-cols-12 md:px-12">
+      <div className="mx-auto grid max-w-6xl gap-16 px-6 py-28 md:grid-cols-12 md:px-16">
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
             <Mark className="size-7" />
@@ -215,7 +215,7 @@ function Footer() {
           </a>
         </div>
       </div>
-      <div className="mx-auto flex max-w-6xl flex-col gap-3 border-t border-line px-6 py-8 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-12">
+      <div className="mx-auto flex max-w-6xl flex-col gap-3 border-t border-line px-6 py-8 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-16">
         <p>© {new Date().getFullYear()} {site.name}</p>
         <p className="max-w-xl">
           Texty na tomto webu nejsou právní radou a nezakládají vztah advokát–klient.
@@ -232,34 +232,34 @@ function CookieBar() {
   return (
     <>
       {showBar ? (
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bg/95 px-4 py-4 backdrop-blur-md md:px-8">
-          <div className="mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <p className="max-w-xl text-sm leading-relaxed text-muted">
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bg px-6 py-3 md:px-16">
+          <div className="mx-auto flex max-w-6xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <p className="max-w-lg text-xs leading-relaxed text-muted">
               Nezbytné uloží jen volbu a barevný režim v tomto prohlížeči. Měření je místní počítadlo
               stránek — nic neodesíláme dál.{" "}
               <Link to="/cookies" className="text-fg underline decoration-line underline-offset-4">
                 Více o cookies
               </Link>
             </p>
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
               <button
                 type="button"
                 onClick={() => setSettingsOpen(true)}
-                className="inline-flex min-h-11 items-center justify-center px-3 text-sm text-fg underline decoration-line underline-offset-4"
+                className="inline-flex min-h-11 items-center text-xs tracking-widest text-muted uppercase"
               >
                 Nastavení
               </button>
               <button
                 type="button"
                 onClick={() => accept(false)}
-                className="press btn btn-line"
+                className="inline-flex min-h-11 items-center text-xs tracking-widest text-fg uppercase"
               >
                 Jen nezbytné
               </button>
               <button
                 type="button"
                 onClick={() => accept(true)}
-                className="press btn btn-solid"
+                className="inline-flex min-h-11 items-center text-xs tracking-widest text-fg uppercase"
               >
                 Povolit měření
               </button>
@@ -330,7 +330,7 @@ export function Shell({ children }: { children: ReactNode }) {
       </a>
       <Header />
       <main id="obsah">{children}</main>
-      <div className={pad ? "pb-36" : undefined}>
+      <div className={pad ? "pb-28" : undefined}>
         <Footer />
       </div>
       <CookieBar />

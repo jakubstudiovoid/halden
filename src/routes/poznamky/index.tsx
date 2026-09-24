@@ -20,7 +20,7 @@ function NotesPage() {
         title="Píšeme, jen když je co říct."
         lede="Žádný zpravodaj a žádné převyprávění novely. Texty z věcí, které se opakují."
       />
-      <ul className="mx-auto max-w-6xl border-b border-line px-6 pb-24 md:px-10">
+      <ul className="mx-auto max-w-6xl border-b border-line px-6 pb-24 md:px-16">
         {notes.map((note) => (
           <li key={note.slug}>
             <Link

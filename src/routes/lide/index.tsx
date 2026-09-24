@@ -20,7 +20,7 @@ function PeoplePage() {
         title="Kdo věc povede, je jasné dřív, než začneme."
         lede="Čtyři partneři a dva counsel. Žádné anonymní týmy a žádné předání po první schůzce."
       />
-      <ul className="mx-auto grid max-w-6xl gap-x-10 gap-y-14 px-6 pb-28 sm:grid-cols-2 md:px-12 lg:grid-cols-3">
+      <ul className="mx-auto grid max-w-6xl gap-x-10 gap-y-14 px-6 pb-28 sm:grid-cols-2 md:px-16 lg:grid-cols-3">
         {people.map((person) => (
           <li key={person.slug} className="border-t border-line pt-6">
             <Link to="/lide/$slug" params={{ slug: person.slug }} className="group block">

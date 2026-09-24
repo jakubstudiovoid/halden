@@ -75,7 +75,7 @@ function ContactPage() {
         title="První zpráva stačí krátká."
         lede="Odpovídáme do dvou pracovních dnů. Když věc nevezmeme, řekneme to stejně rychle. Telefon veřejně nedáváme — první kontakt je písemný."
       />
-      <div className="mx-auto grid max-w-6xl gap-16 px-6 pb-24 md:grid-cols-12 md:px-10">
+      <div className="mx-auto grid max-w-6xl gap-16 px-6 pb-24 md:grid-cols-12 md:px-16">
         <div className="md:col-span-7">
           {status === "sent" ? (
             <p role="status" className="max-w-xl text-2xl font-normal tracking-tight">

@@ -37,7 +37,7 @@ function PersonPage() {
       <Crumbs
         items={[{ to: "/", label: "Halden" }, { to: "/lide", label: "Lidé" }, { label: person.name }]}
       />
-      <header className="mx-auto grid w-full max-w-6xl gap-10 px-6 pt-12 md:grid-cols-12 md:px-10">
+      <header className="mx-auto grid w-full max-w-6xl gap-10 px-6 pt-12 md:grid-cols-12 md:px-16">
         <p className="text-5xl font-normal tracking-tight text-muted tabular-nums md:col-span-3">
           {person.given}
         </p>
@@ -56,7 +56,7 @@ function PersonPage() {
           </div>
         </div>
       </header>
-      <section className="mx-auto mt-16 max-w-6xl px-6 md:px-10" aria-labelledby="oblast">
+      <section className="mx-auto mt-16 max-w-6xl px-6 md:px-16" aria-labelledby="oblast">
         <h2 id="oblast" className="text-sm text-muted">
           Oblast
         </h2>
@@ -75,7 +75,7 @@ function PersonPage() {
           ))}
         </ul>
       </section>
-      <div className="mx-auto mt-12 max-w-6xl px-6 md:px-10">
+      <div className="mx-auto mt-12 max-w-6xl px-6 md:px-16">
         <Link
           to="/kontakt"
           className="press btn btn-solid"

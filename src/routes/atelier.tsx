@@ -20,7 +20,7 @@ function StudioPage() {
         title="Kancelář, ne síť."
         lede="Halden vznikl v Praze v roce 2009. Vídeň přibyla v roce 2018 jako stůl, ne jako druhá značka. Píše se u nás stejně na obou stranách hranice."
       />
-      <div className="mx-auto grid max-w-6xl gap-6 px-6 md:grid-cols-12 md:px-10">
+      <div className="mx-auto grid max-w-6xl gap-6 px-6 md:grid-cols-12 md:px-16">
         <div className="md:col-span-7">
           <Photo
             src="/media/corridor.jpg"
@@ -39,7 +39,7 @@ function StudioPage() {
           />
         </div>
       </div>
-      <section className="mx-auto mt-20 grid max-w-6xl gap-12 px-6 md:grid-cols-12 md:px-10">
+      <section className="mx-auto mt-20 grid max-w-6xl gap-12 px-6 md:grid-cols-12 md:px-16">
         <h2 className="text-3xl font-normal tracking-tight md:col-span-5">Proč ten název</h2>
         <div className="space-y-5 leading-relaxed text-muted md:col-span-7">
           <p>
@@ -56,7 +56,7 @@ function StudioPage() {
           </p>
         </div>
       </section>
-      <section className="mx-auto mt-20 max-w-6xl px-6 pb-24 md:px-10" aria-labelledby="mesta">
+      <section className="mx-auto mt-20 max-w-6xl px-6 pb-24 md:px-16" aria-labelledby="mesta">
         <h2 id="mesta" className="text-sm text-muted">
           Kde se potkáváme
         </h2>

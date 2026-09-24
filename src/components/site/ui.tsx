@@ -80,11 +80,11 @@ export function PageHeader({
   lede?: string;
 }) {
   return (
-    <header className="mx-auto w-full max-w-6xl px-6 pt-36 pb-20 md:px-12 md:pt-48 md:pb-28">
+    <header className="mx-auto w-full max-w-6xl px-6 pt-40 pb-24 md:px-16 md:pt-56 md:pb-32">
       <p className="kicker">{kicker}</p>
-      <h1 className="display mt-8 max-w-4xl text-4xl text-fg md:text-6xl">{title}</h1>
+      <h1 className="display mt-10 max-w-3xl text-4xl text-fg md:text-7xl">{title}</h1>
       {lede ? (
-        <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">{lede}</p>
+        <p className="mt-10 max-w-md text-base leading-relaxed text-muted">{lede}</p>
       ) : null}
     </header>
   );
@@ -92,7 +92,7 @@ export function PageHeader({
 
 export function Crumbs({ items }: { items: { to?: string; label: string }[] }) {
   return (
-    <nav aria-label="Drobečková navigace" className="mx-auto w-full max-w-6xl px-6 pt-28 md:px-12 md:pt-32">
+    <nav aria-label="Drobečková navigace" className="mx-auto w-full max-w-6xl px-6 pt-32 md:px-16 md:pt-36">
       <ol className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
         {items.map((item, index) => {
           const last = index === items.length - 1;
@@ -172,7 +172,7 @@ export function Photo({
 }) {
   return (
     <figure>
-      <div className="photo-frame overflow-hidden border border-line p-2 md:p-3">
+      <div className="photo-frame overflow-hidden">
         <img
           src={src}
           alt={alt}
@@ -184,7 +184,7 @@ export function Photo({
           decoding="async"
         />
       </div>
-      {caption ? <figcaption className="mt-5 max-w-md text-sm leading-relaxed text-muted">{caption}</figcaption> : null}
+      {caption ? <figcaption className="mt-8 max-w-xs text-sm leading-relaxed text-muted">{caption}</figcaption> : null}
     </figure>
   );
 }

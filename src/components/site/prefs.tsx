@@ -48,7 +48,7 @@ function readConsent(): Consent | null {
 function applyTheme(theme: ThemeName) {
   document.documentElement.dataset.theme = theme;
   const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.setAttribute("content", theme === "light" ? "#f6f3ec" : "#070c16");
+  if (meta) meta.setAttribute("content", theme === "light" ? "#f7f4ee" : "#05080f");
 }
 
 export function toggleTheme() {

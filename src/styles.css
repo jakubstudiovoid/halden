@@ -18,28 +18,28 @@
 
 :root {
   color-scheme: dark;
-  --bg: #070c16;
-  --fg: #f3f0e8;
-  --muted: #9aa6bc;
-  --surface: #0d1524;
-  --line: #1c283c;
-  --field: #1a3cb8;
-  --field-deep: #10245c;
-  --field-fg: #f7f4ee;
-  --field-muted: #d5def6;
+  --bg: #05080f;
+  --fg: #f4f0e6;
+  --muted: #8f9bb0;
+  --surface: #0b101a;
+  --line: #171f2e;
+  --field: #17369e;
+  --field-deep: #0c1c4e;
+  --field-fg: #f6f3ec;
+  --field-muted: #c9d4ef;
 }
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --bg: #f6f3ec;
-  --fg: #12182a;
-  --muted: #5a6478;
+  --bg: #f7f4ee;
+  --fg: #141820;
+  --muted: #5c6578;
   --surface: #efeae1;
-  --line: #e0d9cc;
-  --field: #1a3cb8;
-  --field-deep: #10245c;
-  --field-fg: #f7f4ee;
-  --field-muted: #d5def6;
+  --line: #e4ddd0;
+  --field: #17369e;
+  --field-deep: #0c1c4e;
+  --field-fg: #f6f3ec;
+  --field-muted: #c9d4ef;
 }
 
 @layer base {
@@ -91,10 +91,10 @@
 
 .js .reveal {
   opacity: 0;
-  transform: translateY(1.5rem);
+  transform: translateY(0.65rem);
   transition:
-    opacity 1100ms cubic-bezier(0.2, 0, 0, 1),
-    transform 1100ms cubic-bezier(0.2, 0, 0, 1);
+    opacity 1400ms cubic-bezier(0.2, 0, 0, 1),
+    transform 1400ms cubic-bezier(0.2, 0, 0, 1);
 }
 
 .js .reveal.is-in {
@@ -128,7 +128,7 @@
   background-position: 0 100%;
   background-repeat: no-repeat;
   background-size: 0 1px;
-  transition: background-size 700ms cubic-bezier(0.2, 0, 0, 1);
+  transition: background-size 1100ms cubic-bezier(0.2, 0, 0, 1);
 }
 
 .link-draw:hover {
@@ -182,8 +182,16 @@
   border-bottom-color: var(--fg);
 }
 
+.wordmark {
+  font-weight: 400;
+  line-height: 0.78;
+  letter-spacing: -0.065em;
+  text-transform: uppercase;
+  font-size: clamp(4.5rem, 13.2vw, 12.25rem);
+}
+
 .field-wash {
-  background: linear-gradient(168deg, #2c52d4 0%, #1a3cb8 46%, #10245c 100%);
+  background: linear-gradient(180deg, #1b3eae 0%, #16348f 38%, #0b1738 100%);
   color: var(--field-fg);
 }
 

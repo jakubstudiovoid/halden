@@ -20,7 +20,7 @@ function ApproachPage() {
         title="Nejdřív rámec. Pak práce. Pak odchod."
         lede="Klient má vědět, kdo vede, co je v rozsahu a kdy skončíme. To není procesní schéma. To je podmínka, abychom věc vzali."
       />
-      <div className="mx-auto max-w-6xl px-6 md:px-10">
+      <div className="mx-auto max-w-6xl px-6 md:px-16">
         <Photo
           src="/media/paper.jpg"
           alt="Stoh silného bavlněného papíru a ocelové pravítko na tmavém stole."
@@ -29,7 +29,7 @@ function ApproachPage() {
           caption="Jedna stránka, podle které se dá rozhodnout."
         />
       </div>
-      <ol className="mx-auto mt-20 max-w-6xl border-b border-line px-6 md:px-10">
+      <ol className="mx-auto mt-20 max-w-6xl border-b border-line px-6 md:px-16">
         {steps.map((step) => (
           <li key={step.index} className="grid gap-4 border-t border-line py-8 md:grid-cols-12">
             <span className="text-sm text-muted tabular-nums md:col-span-2">{step.index}</span>
@@ -38,7 +38,7 @@ function ApproachPage() {
           </li>
         ))}
       </ol>
-      <section className="mx-auto max-w-6xl px-6 py-20 md:px-10" aria-labelledby="zasady">
+      <section className="mx-auto max-w-6xl px-6 py-20 md:px-16" aria-labelledby="zasady">
         <h2 id="zasady" className="text-3xl font-normal tracking-tight">
           Čtyři zásady, které se nedají obejít dodatkem.
         </h2>
@@ -51,7 +51,7 @@ function ApproachPage() {
           ))}
         </ul>
       </section>
-      <section className="mx-auto max-w-6xl px-6 pb-24 md:px-10" aria-labelledby="otazky">
+      <section className="mx-auto max-w-6xl px-6 pb-24 md:px-16" aria-labelledby="otazky">
         <h2 id="otazky" className="text-sm text-muted">
           Otázky, které dostáváme dřív než spis
         </h2>

@@ -19,7 +19,7 @@ export const Route = createRootRoute({
         content:
           "Halden je advokátní kancelář v Praze a ve Vídni. Přesná právní práce pro vlastníky, vedení a rodiny.",
       },
-      { name: "theme-color", content: "#070c16" },
+      { name: "theme-color", content: "#05080f" },
       { name: "referrer", content: "strict-origin-when-cross-origin" },
     ],
     links: [
@@ -58,7 +58,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function NotFound() {
   return (
-    <div className="mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col justify-center px-6 pt-24 md:px-10">
+    <div className="mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col justify-center px-6 pt-24 md:px-16">
       <p className="text-sm text-muted">404</p>
       <h1 className="mt-6 max-w-xl text-4xl font-normal tracking-tight md:text-6xl">
         Tahle stránka tu není.

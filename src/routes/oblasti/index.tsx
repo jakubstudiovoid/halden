@@ -20,7 +20,7 @@ function PracticesPage() {
         title="Šest věcí, které umíme vést."
         lede="Žádná není vedlejší a žádnou nedržíme jen proto, aby web vypadal úplně. Když se věc nehodí, řekneme to."
       />
-      <ul className="mx-auto max-w-6xl border-b border-line px-6 pb-24 md:px-10">
+      <ul className="mx-auto max-w-6xl border-b border-line px-6 pb-24 md:px-16">
         {practices.map((item) => (
           <li key={item.slug}>
             <Link
