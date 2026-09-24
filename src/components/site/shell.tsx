@@ -177,9 +177,9 @@ function Footer() {
     <footer className="border-t border-line">
       <div className="mx-auto grid max-w-6xl gap-16 px-6 py-28 md:grid-cols-12 md:px-16">
         <div className="md:col-span-5">
-          <BrandLink className="inline-flex items-center gap-5 text-fg">
-            <Mark className="size-16" />
-            <span className="text-sm tracking-widest">HALDEN</span>
+          <BrandLink className="brand-lockup text-fg">
+            <Mark />
+            <span>HALDEN</span>
           </BrandLink>
           <p className="mt-8 max-w-xs text-sm leading-relaxed text-muted">
             Advokátní kancelář pro rozhodnutí, která mají váhu. Praha a Vídeň, jeden standard psaní.

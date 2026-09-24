@@ -198,6 +198,26 @@
   border-bottom-color: var(--fg);
 }
 
+.brand-lockup {
+  --phi: 1.618034;
+  --cap: 0.72;
+  --ink: 0.65625;
+  --inset-end: 0.125;
+  --word: clamp(2rem, 2.6vw, 2.375rem);
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--word) * (var(--cap) / var(--phi) - var(--inset-end) * var(--cap) * var(--phi) / var(--ink)));
+  font-size: var(--word);
+  line-height: 1;
+  letter-spacing: 0.14em;
+}
+
+.brand-lockup svg {
+  width: calc(var(--word) * var(--cap) * var(--phi) / var(--ink));
+  height: calc(var(--word) * var(--cap) * var(--phi) / var(--ink));
+  flex: none;
+}
+
 .wordmark {
   font-weight: 400;
   line-height: 0.78;
