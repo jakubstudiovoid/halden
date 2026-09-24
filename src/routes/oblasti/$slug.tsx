@@ -3,7 +3,6 @@ import { getPractice, ui } from "@/content/site";
 import { pageHead } from "@/lib/meta";
 import { Crumbs } from "@/components/site/ui";
 import { RouteLink, useCopy, useLinks, useSlug } from "@/i18n/locale";
-import { cn } from "@/lib/cn";
 
 export const Route = createFileRoute("/oblasti/$slug")({
   loader: ({ params }) => {
@@ -17,18 +16,6 @@ export const Route = createFileRoute("/oblasti/$slug")({
       : pageHead("Oblast", ui.metaPracticeFallback),
   component: PracticePage,
 });
-
-function PagerArrow({ direction }: { direction: "back" | "next" }) {
-  return (
-    <svg
-      viewBox="0 0 48 12"
-      aria-hidden="true"
-      className={cn("pager-arrow", direction === "back" ? "is-back" : "is-next")}
-    >
-      <path d="M1 6 H46 M40 1.5 L46 6 L40 10.5" fill="none" stroke="currentColor" strokeWidth="1" />
-    </svg>
-  );
-}
 
 export function PracticePage() {
   const slug = useSlug();
@@ -115,8 +102,7 @@ export function PracticePage() {
       <nav aria-label={copy.areaNav} className="mx-auto mt-24 max-w-6xl px-6 md:px-16">
         <div className="flex flex-col gap-12 sm:flex-row sm:items-start sm:justify-between">
           {previous ? (
-            <RouteLink to={links.practice(previous.slug)} className="reveal group flex max-w-md items-center gap-5">
-              <PagerArrow direction="back" />
+            <RouteLink to={links.practice(previous.slug)} className="reveal block max-w-md">
               <span className="min-w-0">
                 <span className="block text-sm text-muted">{copy.areaPrev}</span>
                 <span className="mt-2 block text-2xl font-normal tracking-tight">{previous.title}</span>
@@ -126,13 +112,12 @@ export function PracticePage() {
           {next ? (
             <RouteLink
               to={links.practice(next.slug)}
-              className="reveal group flex max-w-md items-center justify-end gap-5 text-right sm:ml-auto"
+              className="reveal block max-w-md text-right sm:ml-auto"
             >
               <span className="min-w-0">
                 <span className="block text-sm text-muted">{copy.areaNext}</span>
                 <span className="mt-2 block text-2xl font-normal tracking-tight">{next.title}</span>
               </span>
-              <PagerArrow direction="next" />
             </RouteLink>
           ) : null}
         </div>
