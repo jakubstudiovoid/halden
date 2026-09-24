@@ -1,7 +1,8 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getNote } from "@/content/site";
+import { createFileRoute, notFound } from "@tanstack/react-router";
+import { getNote, ui } from "@/content/site";
 import { pageHead } from "@/lib/meta";
 import { Crumbs, JsonLd } from "@/components/site/ui";
+import { RouteLink, useCopy, useLinks, useLocale, useSlug } from "@/i18n/locale";
 
 export const Route = createFileRoute("/poznamky/$slug")({
   loader: ({ params }) => {
@@ -10,14 +11,17 @@ export const Route = createFileRoute("/poznamky/$slug")({
     return note;
   },
   head: ({ loaderData }) =>
-    loaderData
-      ? pageHead(loaderData.title, loaderData.excerpt)
-      : pageHead("Poznámka", "Poznámka kanceláře Halden."),
+    loaderData ? pageHead(loaderData.title, loaderData.excerpt) : pageHead("Poznámka", ui.metaNoteFallback),
   component: NotePage,
 });
 
-function NotePage() {
-  const note = Route.useLoaderData();
+export function NotePage() {
+  const slug = useSlug();
+  const locale = useLocale();
+  const { ui: copy, notes } = useCopy();
+  const links = useLinks();
+  const note = notes.find((item) => item.slug === slug);
+  if (!note) return null;
   return (
     <article className="pb-24">
       <JsonLd
@@ -27,14 +31,14 @@ function NotePage() {
           headline: note.title,
           datePublished: note.date,
           description: note.excerpt,
-          inLanguage: "cs",
+          inLanguage: locale,
           author: { "@type": "Organization", name: "Halden" },
         }}
       />
       <Crumbs
         items={[
-          { to: "/", label: "Halden" },
-          { to: "/poznamky", label: "Poznámky" },
+          { to: links.home, label: "Halden" },
+          { to: links.notes, label: copy.notesKicker },
           { label: note.title },
         ]}
       />
@@ -43,7 +47,7 @@ function NotePage() {
           <p className="text-sm text-muted">
             <time dateTime={note.date}>{note.displayDate}</time>
             <span aria-hidden="true"> · </span>
-            {note.minutes} minut čtení
+            {note.minutes} {copy.minRead}
           </p>
           <h1 className="mt-6 text-4xl font-normal tracking-tight md:text-6xl">{note.title}</h1>
           <p className="mt-8 text-lg leading-relaxed text-muted">{note.excerpt}</p>
@@ -65,10 +69,10 @@ function NotePage() {
       </div>
       <p className="mx-auto mt-16 max-w-6xl px-6 text-sm text-muted md:px-16">
         <span className="block max-w-3xl">
-          Text není právní radou. Pokud řešíte podobnou věc,{" "}
-          <Link to="/kontakt" className="text-fg underline decoration-line underline-offset-4">
-            napište partnerovi
-          </Link>
+          {copy.noteDisclaimer}{" "}
+          <RouteLink to={links.contact} className="text-fg underline decoration-line underline-offset-4">
+            {copy.noteWrite}
+          </RouteLink>
           .
         </span>
       </p>

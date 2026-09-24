@@ -1,33 +1,22 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { principles, questions, steps } from "@/content/site";
+import { createFileRoute } from "@tanstack/react-router";
+import { ui } from "@/content/site";
 import { pageHead } from "@/lib/meta";
 import { PageHeader, Photo } from "@/components/site/ui";
+import { RouteLink, useCopy, useLinks } from "@/i18n/locale";
 
 export const Route = createFileRoute("/pristup")({
-  head: () =>
-    pageHead(
-      "Přístup",
-      "Jak Halden vede věc: jeden partner, psaný rozsah, strop honoráře a odchod, když už nás není třeba.",
-    ),
+  head: () => pageHead("Přístup", ui.metaApproach),
   component: ApproachPage,
 });
 
-function ApproachPage() {
+export function ApproachPage() {
+  const { ui: copy, steps, principles, questions } = useCopy();
+  const links = useLinks();
   return (
     <>
-      <PageHeader
-        kicker="Přístup"
-        title="Nejdřív rámec. Pak práce. Pak odchod."
-        lede="Klient má vědět, kdo vede, co je v rozsahu a kdy skončíme. To není procesní schéma. To je podmínka, abychom věc vzali."
-      />
+      <PageHeader kicker={copy.kickerApproach} title={copy.approachTitle} lede={copy.approachLede} />
       <div className="mx-auto max-w-6xl px-6 md:px-16">
-        <Photo
-          src="/media/paper.jpg"
-          alt="Stoh silného bavlněného papíru a ocelové pravítko na tmavém stole."
-          width={1400}
-          height={934}
-          caption="Jedna stránka, podle které se dá rozhodnout."
-        />
+        <Photo src="/media/paper.jpg" alt={copy.paperAlt} width={1400} height={934} caption={copy.paperCaption} />
       </div>
       <ol className="mx-auto mt-20 max-w-6xl border-b border-line px-6 md:px-16">
         {steps.map((step) => (
@@ -40,7 +29,7 @@ function ApproachPage() {
       </ol>
       <section className="mx-auto max-w-6xl px-6 py-20 md:px-16" aria-labelledby="zasady">
         <h2 id="zasady" className="text-3xl font-normal tracking-tight">
-          Čtyři zásady, které se nedají obejít dodatkem.
+          {copy.principlesTitle}
         </h2>
         <ul className="mt-12 grid gap-10 md:grid-cols-2">
           {principles.map((item) => (
@@ -53,7 +42,7 @@ function ApproachPage() {
       </section>
       <section className="mx-auto max-w-6xl px-6 pb-24 md:px-16" aria-labelledby="otazky">
         <h2 id="otazky" className="text-sm text-muted">
-          Otázky, které dostáváme dřív než spis
+          {copy.questionsTitle}
         </h2>
         <dl className="mt-8 border-b border-line">
           {questions.map((item) => (
@@ -63,12 +52,9 @@ function ApproachPage() {
             </div>
           ))}
         </dl>
-        <Link
-          to="/kontakt"
-          className="press btn btn-solid mt-12"
-        >
-          Napsat
-        </Link>
+        <RouteLink to={links.contact} className="press btn btn-solid mt-12">
+          {copy.write}
+        </RouteLink>
       </section>
     </>
   );

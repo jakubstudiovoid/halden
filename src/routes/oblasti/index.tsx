@@ -1,31 +1,25 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { practices } from "@/content/site";
+import { createFileRoute } from "@tanstack/react-router";
+import { ui } from "@/content/site";
 import { pageHead } from "@/lib/meta";
 import { PageHeader } from "@/components/site/ui";
+import { RouteLink, useCopy, useLinks } from "@/i18n/locale";
 
 export const Route = createFileRoute("/oblasti/")({
-  head: () =>
-    pageHead(
-      "Oblasti",
-      "Šest oblastí Haldenu: transakce, spory, majetek, regulace, nemovitosti a práce vedení.",
-    ),
+  head: () => pageHead("Oblasti", ui.metaPractices),
   component: PracticesPage,
 });
 
-function PracticesPage() {
+export function PracticesPage() {
+  const { ui: copy, practices } = useCopy();
+  const links = useLinks();
   return (
     <>
-      <PageHeader
-        kicker="Oblasti"
-        title="Šest věcí, které umíme vést."
-        lede="Žádná není vedlejší a žádnou nedržíme jen proto, aby web vypadal úplně. Když se věc nehodí, řekneme to."
-      />
+      <PageHeader kicker={copy.kickerPractices} title={copy.practicesTitle} lede={copy.practicesLede} />
       <ul className="mx-auto max-w-6xl border-b border-line px-6 pb-24 md:px-16">
         {practices.map((item) => (
           <li key={item.slug}>
-            <Link
-              to="/oblasti/$slug"
-              params={{ slug: item.slug }}
+            <RouteLink
+              to={links.practice(item.slug)}
               className="group grid gap-3 border-t border-line py-8 md:grid-cols-12 md:items-baseline"
             >
               <span className="text-sm text-muted tabular-nums md:col-span-1">{item.index}</span>
@@ -34,7 +28,7 @@ function PracticesPage() {
               <span aria-hidden="true" className="text-sm text-muted md:col-span-1 md:text-right">
                 →
               </span>
-            </Link>
+            </RouteLink>
           </li>
         ))}
       </ul>

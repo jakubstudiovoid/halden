@@ -1,7 +1,8 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getPractice, peopleFor } from "@/content/site";
+import { createFileRoute, notFound } from "@tanstack/react-router";
+import { getPractice, ui } from "@/content/site";
 import { pageHead } from "@/lib/meta";
 import { Crumbs } from "@/components/site/ui";
+import { RouteLink, useCopy, useLinks, useSlug } from "@/i18n/locale";
 
 export const Route = createFileRoute("/oblasti/$slug")({
   loader: ({ params }) => {
@@ -12,20 +13,26 @@ export const Route = createFileRoute("/oblasti/$slug")({
   head: ({ loaderData }) =>
     loaderData
       ? pageHead(loaderData.title, loaderData.summary)
-      : pageHead("Oblast", "Oblast právní praxe kanceláře Halden."),
+      : pageHead("Oblast", ui.metaPracticeFallback),
   component: PracticePage,
 });
 
-function PracticePage() {
-  const practice = Route.useLoaderData();
-  const lawyers = peopleFor(practice.people);
+export function PracticePage() {
+  const slug = useSlug();
+  const { ui: copy, practices, people } = useCopy();
+  const links = useLinks();
+  const practice = practices.find((item) => item.slug === slug);
+  if (!practice) return null;
+  const lawyers = practice.people
+    .map((id) => people.find((person) => person.slug === id))
+    .filter((person) => Boolean(person));
 
   return (
     <article className="pb-24">
       <Crumbs
         items={[
-          { to: "/", label: "Halden" },
-          { to: "/oblasti", label: "Oblasti" },
+          { to: links.home, label: "Halden" },
+          { to: links.practices, label: copy.kickerPractices },
           { label: practice.title },
         ]}
       />
@@ -37,7 +44,7 @@ function PracticePage() {
       <div className="mx-auto grid max-w-6xl gap-16 px-6 md:grid-cols-2 md:px-16">
         <section aria-labelledby="kdy">
           <h2 id="kdy" className="text-sm text-muted">
-            Kdy přijít
+            {copy.when}
           </h2>
           <ul className="mt-6 space-y-4 border-t border-line pt-6">
             {practice.when.map((item) => (
@@ -49,7 +56,7 @@ function PracticePage() {
         </section>
         <section aria-labelledby="prace">
           <h2 id="prace" className="text-sm text-muted">
-            Co děláme
+            {copy.work}
           </h2>
           <ul className="mt-6 space-y-4 border-t border-line pt-6">
             {practice.work.map((item) => (
@@ -63,32 +70,30 @@ function PracticePage() {
       <p className="mx-auto mt-16 max-w-6xl px-6 text-muted md:px-16">{practice.decline}</p>
       <section className="mx-auto mt-16 max-w-6xl px-6 md:px-16" aria-labelledby="vede">
         <h2 id="vede" className="text-sm text-muted">
-          Vede
+          {copy.leads}
         </h2>
         <ul className="mt-6 border-t border-line">
-          {lawyers.map((person) => (
-            <li key={person.slug}>
-              <Link
-                to="/lide/$slug"
-                params={{ slug: person.slug }}
-                className="flex flex-col gap-1 border-b border-line py-5 sm:flex-row sm:items-baseline sm:justify-between"
-              >
-                <span className="text-xl font-medium">{person.name}</span>
-                <span className="text-sm text-muted">
-                  {person.role} · {person.city}
-                </span>
-              </Link>
-            </li>
-          ))}
+          {lawyers.map((person) =>
+            person ? (
+              <li key={person.slug}>
+                <RouteLink
+                  to={links.person(person.slug)}
+                  className="flex flex-col gap-1 border-b border-line py-5 sm:flex-row sm:items-baseline sm:justify-between"
+                >
+                  <span className="text-xl font-medium">{person.name}</span>
+                  <span className="text-sm text-muted">
+                    {person.role} · {person.city}
+                  </span>
+                </RouteLink>
+              </li>
+            ) : null,
+          )}
         </ul>
       </section>
       <div className="mx-auto mt-16 max-w-6xl px-6 md:px-16">
-        <Link
-          to="/kontakt"
-          className="press btn btn-solid"
-        >
-          Napsat k této věci
-        </Link>
+        <RouteLink to={links.contact} className="press btn btn-solid">
+          {copy.writeAbout}
+        </RouteLink>
       </div>
     </article>
   );

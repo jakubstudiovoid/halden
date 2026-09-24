@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { notes, practices, questions, site } from "@/content/site";
+import * as en from "@/content/en";
 
 export const Route = createFileRoute("/llms.txt")({
   server: {
@@ -12,6 +13,7 @@ export const Route = createFileRoute("/llms.txt")({
           `> ${site.description}`,
           "",
           "Texty nejsou právní radou a nezakládají vztah advokát–klient.",
+          "Texts are not legal advice and do not create a lawyer–client relationship.",
           "",
           "## Stránky",
           "",
@@ -27,12 +29,29 @@ export const Route = createFileRoute("/llms.txt")({
           `- [Soukromí](${origin}/soukromi)`,
           `- [Cookies](${origin}/cookies)`,
           "",
+          "## Pages in English",
+          "",
+          `- [Home](${origin}/en)`,
+          `- [Practices](${origin}/en/practices)`,
+          ...en.practices.map((item) => `- [${item.title}](${origin}/en/practices/${item.slug}): ${item.summary}`),
+          `- [Approach](${origin}/en/approach)`,
+          `- [Studio](${origin}/en/studio)`,
+          `- [People](${origin}/en/people)`,
+          `- [Notes](${origin}/en/notes)`,
+          ...en.notes.map((item) => `- [${item.title}](${origin}/en/notes/${item.slug}): ${item.excerpt}`),
+          `- [Contact](${origin}/en/contact)`,
+          `- [Privacy](${origin}/en/privacy)`,
+          `- [Cookies](${origin}/en/cookies)`,
+          "",
           "## Časté otázky",
           "",
           ...questions.flatMap((item) => [`### ${item.q}`, item.a, ""]),
+          "## Questions",
+          "",
+          ...en.questions.flatMap((item) => [`### ${item.q}`, item.a, ""]),
           `Kontakt: ${site.email}`,
-          "Města: Praha a Vídeň, schůzka po potvrzení.",
-          "Jazyky: čeština, angličtina, němčina.",
+          "Města: Praha a Vídeň, schůzka po potvrzení. Cities: Prague and Vienna, a meeting once confirmed.",
+          "Jazyky: čeština, angličtina, němčina. Languages: Czech, English, German.",
           "",
         ];
         return new Response(lines.join("\n"), {

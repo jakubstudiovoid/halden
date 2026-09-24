@@ -1,21 +1,13 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { topics } from "@/content/site";
+import { topicIds } from "@/content/site";
 
 const inquirySchema = z.object({
-  name: z.string().trim().min(2, "Napište jméno.").max(80, "Jméno je příliš dlouhé."),
-  email: z
-    .string()
-    .trim()
-    .email("Zadejte platný e-mail.")
-    .max(160, "E-mail je příliš dlouhý."),
-  topic: z.enum(topics, { message: "Vyberte, čeho se věc týká." }),
-  message: z
-    .string()
-    .trim()
-    .min(20, "Napište aspoň pár vět, ať víme, o čem mluvit.")
-    .max(4000, "Zpráva je příliš dlouhá."),
-  consent: z.literal(true, { message: "Bez souhlasu zprávu nepřijmeme." }),
+  name: z.string().trim().min(2).max(80),
+  email: z.string().trim().email().max(160),
+  topic: z.enum(topicIds),
+  message: z.string().trim().min(20).max(4000),
+  consent: z.literal(true),
   website: z.string().max(200).optional(),
 });
 

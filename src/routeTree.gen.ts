@@ -18,12 +18,24 @@ import { Route as PristupRouteImport } from './routes/pristup'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SoukromiRouteImport } from './routes/soukromi'
+import { Route as EnIndexRouteImport } from './routes/en/index'
+import { Route as EnApproachRouteImport } from './routes/en/approach'
+import { Route as EnContactRouteImport } from './routes/en/contact'
+import { Route as EnCookiesRouteImport } from './routes/en/cookies'
+import { Route as EnPrivacyRouteImport } from './routes/en/privacy'
+import { Route as EnStudioRouteImport } from './routes/en/studio'
 import { Route as LideIndexRouteImport } from './routes/lide/index'
 import { Route as LideSlugRouteImport } from './routes/lide/$slug'
 import { Route as OblastiIndexRouteImport } from './routes/oblasti/index'
 import { Route as OblastiSlugRouteImport } from './routes/oblasti/$slug'
 import { Route as PoznamkyIndexRouteImport } from './routes/poznamky/index'
 import { Route as PoznamkySlugRouteImport } from './routes/poznamky/$slug'
+import { Route as EnNotesIndexRouteImport } from './routes/en/notes/index'
+import { Route as EnNotesSlugRouteImport } from './routes/en/notes/$slug'
+import { Route as EnPeopleIndexRouteImport } from './routes/en/people/index'
+import { Route as EnPeopleSlugRouteImport } from './routes/en/people/$slug'
+import { Route as EnPracticesIndexRouteImport } from './routes/en/practices/index'
+import { Route as EnPracticesSlugRouteImport } from './routes/en/practices/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -70,6 +82,36 @@ const SoukromiRoute = SoukromiRouteImport.update({
   path: '/soukromi',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnIndexRoute = EnIndexRouteImport.update({
+  id: '/en/',
+  path: '/en/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnApproachRoute = EnApproachRouteImport.update({
+  id: '/en/approach',
+  path: '/en/approach',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnContactRoute = EnContactRouteImport.update({
+  id: '/en/contact',
+  path: '/en/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnCookiesRoute = EnCookiesRouteImport.update({
+  id: '/en/cookies',
+  path: '/en/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnPrivacyRoute = EnPrivacyRouteImport.update({
+  id: '/en/privacy',
+  path: '/en/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnStudioRoute = EnStudioRouteImport.update({
+  id: '/en/studio',
+  path: '/en/studio',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LideIndexRoute = LideIndexRouteImport.update({
   id: '/lide/',
   path: '/lide/',
@@ -100,6 +142,36 @@ const PoznamkySlugRoute = PoznamkySlugRouteImport.update({
   path: '/poznamky/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnNotesIndexRoute = EnNotesIndexRouteImport.update({
+  id: '/en/notes/',
+  path: '/en/notes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnNotesSlugRoute = EnNotesSlugRouteImport.update({
+  id: '/en/notes/$slug',
+  path: '/en/notes/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnPeopleIndexRoute = EnPeopleIndexRouteImport.update({
+  id: '/en/people/',
+  path: '/en/people/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnPeopleSlugRoute = EnPeopleSlugRouteImport.update({
+  id: '/en/people/$slug',
+  path: '/en/people/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnPracticesIndexRoute = EnPracticesIndexRouteImport.update({
+  id: '/en/practices/',
+  path: '/en/practices/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnPracticesSlugRoute = EnPracticesSlugRouteImport.update({
+  id: '/en/practices/$slug',
+  path: '/en/practices/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -111,12 +183,24 @@ export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/soukromi': typeof SoukromiRoute
+  '/en/approach': typeof EnApproachRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/cookies': typeof EnCookiesRoute
+  '/en/privacy': typeof EnPrivacyRoute
+  '/en/studio': typeof EnStudioRoute
   '/lide/$slug': typeof LideSlugRoute
   '/oblasti/$slug': typeof OblastiSlugRoute
   '/poznamky/$slug': typeof PoznamkySlugRoute
+  '/en/': typeof EnIndexRoute
   '/lide/': typeof LideIndexRoute
   '/oblasti/': typeof OblastiIndexRoute
   '/poznamky/': typeof PoznamkyIndexRoute
+  '/en/notes/$slug': typeof EnNotesSlugRoute
+  '/en/people/$slug': typeof EnPeopleSlugRoute
+  '/en/practices/$slug': typeof EnPracticesSlugRoute
+  '/en/notes/': typeof EnNotesIndexRoute
+  '/en/people/': typeof EnPeopleIndexRoute
+  '/en/practices/': typeof EnPracticesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -128,12 +212,24 @@ export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/soukromi': typeof SoukromiRoute
+  '/en/approach': typeof EnApproachRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/cookies': typeof EnCookiesRoute
+  '/en/privacy': typeof EnPrivacyRoute
+  '/en/studio': typeof EnStudioRoute
   '/lide/$slug': typeof LideSlugRoute
   '/oblasti/$slug': typeof OblastiSlugRoute
   '/poznamky/$slug': typeof PoznamkySlugRoute
+  '/en': typeof EnIndexRoute
   '/lide': typeof LideIndexRoute
   '/oblasti': typeof OblastiIndexRoute
   '/poznamky': typeof PoznamkyIndexRoute
+  '/en/notes/$slug': typeof EnNotesSlugRoute
+  '/en/people/$slug': typeof EnPeopleSlugRoute
+  '/en/practices/$slug': typeof EnPracticesSlugRoute
+  '/en/notes': typeof EnNotesIndexRoute
+  '/en/people': typeof EnPeopleIndexRoute
+  '/en/practices': typeof EnPracticesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -146,12 +242,24 @@ export interface FileRoutesById {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/soukromi': typeof SoukromiRoute
+  '/en/approach': typeof EnApproachRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/cookies': typeof EnCookiesRoute
+  '/en/privacy': typeof EnPrivacyRoute
+  '/en/studio': typeof EnStudioRoute
   '/lide/$slug': typeof LideSlugRoute
   '/oblasti/$slug': typeof OblastiSlugRoute
   '/poznamky/$slug': typeof PoznamkySlugRoute
+  '/en/': typeof EnIndexRoute
   '/lide/': typeof LideIndexRoute
   '/oblasti/': typeof OblastiIndexRoute
   '/poznamky/': typeof PoznamkyIndexRoute
+  '/en/notes/$slug': typeof EnNotesSlugRoute
+  '/en/people/$slug': typeof EnPeopleSlugRoute
+  '/en/practices/$slug': typeof EnPracticesSlugRoute
+  '/en/notes/': typeof EnNotesIndexRoute
+  '/en/people/': typeof EnPeopleIndexRoute
+  '/en/practices/': typeof EnPracticesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -165,12 +273,24 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/soukromi'
+    | '/en/approach'
+    | '/en/contact'
+    | '/en/cookies'
+    | '/en/privacy'
+    | '/en/studio'
     | '/lide/$slug'
     | '/oblasti/$slug'
     | '/poznamky/$slug'
+    | '/en/'
     | '/lide/'
     | '/oblasti/'
     | '/poznamky/'
+    | '/en/notes/$slug'
+    | '/en/people/$slug'
+    | '/en/practices/$slug'
+    | '/en/notes/'
+    | '/en/people/'
+    | '/en/practices/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -182,12 +302,24 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/soukromi'
+    | '/en/approach'
+    | '/en/contact'
+    | '/en/cookies'
+    | '/en/privacy'
+    | '/en/studio'
     | '/lide/$slug'
     | '/oblasti/$slug'
     | '/poznamky/$slug'
+    | '/en'
     | '/lide'
     | '/oblasti'
     | '/poznamky'
+    | '/en/notes/$slug'
+    | '/en/people/$slug'
+    | '/en/practices/$slug'
+    | '/en/notes'
+    | '/en/people'
+    | '/en/practices'
   id:
     | '__root__'
     | '/'
@@ -199,12 +331,24 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/soukromi'
+    | '/en/approach'
+    | '/en/contact'
+    | '/en/cookies'
+    | '/en/privacy'
+    | '/en/studio'
     | '/lide/$slug'
     | '/oblasti/$slug'
     | '/poznamky/$slug'
+    | '/en/'
     | '/lide/'
     | '/oblasti/'
     | '/poznamky/'
+    | '/en/notes/$slug'
+    | '/en/people/$slug'
+    | '/en/practices/$slug'
+    | '/en/notes/'
+    | '/en/people/'
+    | '/en/practices/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -217,12 +361,24 @@ export interface RootRouteChildren {
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SoukromiRoute: typeof SoukromiRoute
+  EnApproachRoute: typeof EnApproachRoute
+  EnContactRoute: typeof EnContactRoute
+  EnCookiesRoute: typeof EnCookiesRoute
+  EnPrivacyRoute: typeof EnPrivacyRoute
+  EnStudioRoute: typeof EnStudioRoute
   LideSlugRoute: typeof LideSlugRoute
   OblastiSlugRoute: typeof OblastiSlugRoute
   PoznamkySlugRoute: typeof PoznamkySlugRoute
+  EnIndexRoute: typeof EnIndexRoute
   LideIndexRoute: typeof LideIndexRoute
   OblastiIndexRoute: typeof OblastiIndexRoute
   PoznamkyIndexRoute: typeof PoznamkyIndexRoute
+  EnNotesSlugRoute: typeof EnNotesSlugRoute
+  EnPeopleSlugRoute: typeof EnPeopleSlugRoute
+  EnPracticesSlugRoute: typeof EnPracticesSlugRoute
+  EnNotesIndexRoute: typeof EnNotesIndexRoute
+  EnPeopleIndexRoute: typeof EnPeopleIndexRoute
+  EnPracticesIndexRoute: typeof EnPracticesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -290,6 +446,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SoukromiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/': {
+      id: '/en/'
+      path: '/en'
+      fullPath: '/en/'
+      preLoaderRoute: typeof EnIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/approach': {
+      id: '/en/approach'
+      path: '/en/approach'
+      fullPath: '/en/approach'
+      preLoaderRoute: typeof EnApproachRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/contact': {
+      id: '/en/contact'
+      path: '/en/contact'
+      fullPath: '/en/contact'
+      preLoaderRoute: typeof EnContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/cookies': {
+      id: '/en/cookies'
+      path: '/en/cookies'
+      fullPath: '/en/cookies'
+      preLoaderRoute: typeof EnCookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/privacy': {
+      id: '/en/privacy'
+      path: '/en/privacy'
+      fullPath: '/en/privacy'
+      preLoaderRoute: typeof EnPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/studio': {
+      id: '/en/studio'
+      path: '/en/studio'
+      fullPath: '/en/studio'
+      preLoaderRoute: typeof EnStudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lide/': {
       id: '/lide/'
       path: '/lide'
@@ -332,6 +530,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PoznamkySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/notes/': {
+      id: '/en/notes/'
+      path: '/en/notes'
+      fullPath: '/en/notes/'
+      preLoaderRoute: typeof EnNotesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/notes/$slug': {
+      id: '/en/notes/$slug'
+      path: '/en/notes/$slug'
+      fullPath: '/en/notes/$slug'
+      preLoaderRoute: typeof EnNotesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/people/': {
+      id: '/en/people/'
+      path: '/en/people'
+      fullPath: '/en/people/'
+      preLoaderRoute: typeof EnPeopleIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/people/$slug': {
+      id: '/en/people/$slug'
+      path: '/en/people/$slug'
+      fullPath: '/en/people/$slug'
+      preLoaderRoute: typeof EnPeopleSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/practices/': {
+      id: '/en/practices/'
+      path: '/en/practices'
+      fullPath: '/en/practices/'
+      preLoaderRoute: typeof EnPracticesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/practices/$slug': {
+      id: '/en/practices/$slug'
+      path: '/en/practices/$slug'
+      fullPath: '/en/practices/$slug'
+      preLoaderRoute: typeof EnPracticesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -345,12 +585,24 @@ const rootRouteChildren: RootRouteChildren = {
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SoukromiRoute: SoukromiRoute,
+  EnApproachRoute: EnApproachRoute,
+  EnContactRoute: EnContactRoute,
+  EnCookiesRoute: EnCookiesRoute,
+  EnPrivacyRoute: EnPrivacyRoute,
+  EnStudioRoute: EnStudioRoute,
   LideSlugRoute: LideSlugRoute,
   OblastiSlugRoute: OblastiSlugRoute,
   PoznamkySlugRoute: PoznamkySlugRoute,
+  EnIndexRoute: EnIndexRoute,
   LideIndexRoute: LideIndexRoute,
   OblastiIndexRoute: OblastiIndexRoute,
   PoznamkyIndexRoute: PoznamkyIndexRoute,
+  EnNotesSlugRoute: EnNotesSlugRoute,
+  EnPeopleSlugRoute: EnPeopleSlugRoute,
+  EnPracticesSlugRoute: EnPracticesSlugRoute,
+  EnNotesIndexRoute: EnNotesIndexRoute,
+  EnPeopleIndexRoute: EnPeopleIndexRoute,
+  EnPracticesIndexRoute: EnPracticesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

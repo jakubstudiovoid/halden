@@ -2,16 +2,18 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
-import { nav, site } from "@/content/site";
+import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { Mark } from "@/components/site/ui";
 import { toggleTheme, usePrefs } from "@/components/site/prefs";
+import { localeFromPath, RouteLink, swapLocale, useCopy, useLinks, useLocale } from "@/i18n/locale";
 
 function ThemeButton({ className }: { className?: string }) {
+  const { ui } = useCopy();
   return (
     <button
       type="button"
-      aria-label="Přepnout barevný režim"
+      aria-label={ui.theme}
       onClick={toggleTheme}
       className={cn(
         "press inline-flex size-11 items-center justify-center text-fg transition-colors duration-1000 hover:text-muted",
@@ -24,12 +26,35 @@ function ThemeButton({ className }: { className?: string }) {
   );
 }
 
-function BrandLink({ className, children }: { className?: string; children: ReactNode }) {
+function LocaleSwitch({ overField }: { overField?: boolean }) {
   const path = useRouterState({ select: (state) => state.location.pathname });
+  const locale = localeFromPath(path);
+  const href = swapLocale(path, locale === "cs" ? "en" : "cs");
+  const { ui } = useCopy();
   return (
     <Link
-      to="/"
-      aria-label="Halden, úvod"
+      to={href as never}
+      hrefLang={locale === "cs" ? "en" : "cs"}
+      lang={locale === "cs" ? "en" : "cs"}
+      aria-label={locale === "cs" ? ui.toEnglish : ui.toCzech}
+      className={cn(
+        "inline-flex min-h-11 items-center px-2 text-xs tracking-widest transition-colors duration-1000",
+        overField ? "text-field-muted hover:text-field-fg" : "text-muted hover:text-fg",
+      )}
+    >
+      {locale === "cs" ? "EN" : "CS"}
+    </Link>
+  );
+}
+
+function BrandLink({ className, children }: { className?: string; children: ReactNode }) {
+  const path = useRouterState({ select: (state) => state.location.pathname });
+  const { home } = useLinks();
+  const { ui } = useCopy();
+  return (
+    <Link
+      to={home as never}
+      aria-label={ui.homeAria}
       className={className}
       onClick={(event: MouseEvent<HTMLAnchorElement>) => {
         const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -38,7 +63,7 @@ function BrandLink({ className, children }: { className?: string; children: Reac
           window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
           return;
         }
-        if (path === "/") event.preventDefault();
+        if (path === home) event.preventDefault();
       }}
     >
       {children}
@@ -50,7 +75,9 @@ function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const path = useRouterState({ select: (state) => state.location.pathname });
-  const overField = path === "/" && !scrolled;
+  const overField = path === "/" || path === "/en" ? !scrolled : false;
+  const { ui, nav } = useCopy();
+  const links = useLinks();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.72);
@@ -73,14 +100,14 @@ function Header() {
           <Mark tone={overField ? "on-field" : "default"} className="size-6" />
           <span className="text-xs tracking-widest">HALDEN</span>
         </BrandLink>
-        <nav aria-label="Hlavní" className="hidden items-center gap-9 lg:flex">
+        <nav aria-label={ui.navMain} className="hidden items-center gap-9 lg:flex">
           {nav.map((item) => {
             const active = path === item.to || path.startsWith(`${item.to}/`);
             return (
-              <Link
+              <RouteLink
                 key={item.to}
                 to={item.to}
-                aria-current={active ? "page" : undefined}
+                ariaCurrent={active}
                 className={cn(
                   "text-xs tracking-widest uppercase transition-colors duration-1000",
                   overField
@@ -93,27 +120,28 @@ function Header() {
                 )}
               >
                 {item.label}
-              </Link>
+              </RouteLink>
             );
           })}
         </nav>
         <div className="flex items-center gap-1">
-          <Link
-            to="/kontakt"
-            aria-current={path === "/kontakt" ? "page" : undefined}
+          <RouteLink
+            to={links.contact}
+            ariaCurrent={path === links.contact}
             className={cn(
               "hidden min-h-11 items-center text-xs tracking-widest uppercase transition-colors duration-1000 sm:inline-flex",
               overField
-                ? path === "/kontakt"
+                ? path === links.contact
                   ? "text-field-fg"
                   : "text-field-muted hover:text-field-fg"
-                : path === "/kontakt"
+                : path === links.contact
                   ? "text-fg"
                   : "text-muted hover:text-fg",
             )}
           >
-            Kontakt
-          </Link>
+            {ui.contact}
+          </RouteLink>
+          <LocaleSwitch overField={overField} />
           <ThemeButton className={overField ? "text-field-fg hover:text-field-muted" : undefined} />
           <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger asChild>
@@ -123,7 +151,7 @@ function Header() {
                   "press inline-flex size-11 items-center justify-center lg:hidden",
                   overField ? "text-field-fg" : "text-fg",
                 )}
-                aria-label="Otevřít menu"
+                aria-label={ui.openMenu}
               >
                 <Menu className="size-5" aria-hidden="true" />
               </button>
@@ -140,34 +168,37 @@ function Header() {
                     <button
                       type="button"
                       className="press inline-flex size-11 items-center justify-center"
-                      aria-label="Zavřít menu"
+                      aria-label={ui.closeMenu}
                     >
                       <X className="size-5" aria-hidden="true" />
                     </button>
                   </Dialog.Close>
                 </div>
-                <nav aria-label="Mobilní" className="mt-20 flex flex-col">
+                <nav aria-label={ui.navMobile} className="mt-20 flex flex-col">
                   {nav.map((item) => (
-                    <Link
+                    <RouteLink
                       key={item.to}
                       to={item.to}
                       onClick={() => setOpen(false)}
                       className="border-t border-line py-6 text-4xl tracking-tight"
                     >
                       {item.label}
-                    </Link>
+                    </RouteLink>
                   ))}
-                  <Link
-                    to="/kontakt"
+                  <RouteLink
+                    to={links.contact}
                     onClick={() => setOpen(false)}
                     className="border-t border-line py-6 text-4xl tracking-tight"
                   >
-                    Kontakt
-                  </Link>
+                    {ui.contact}
+                  </RouteLink>
                 </nav>
                 <div className="mt-auto flex items-center justify-between border-t border-line py-6">
-                  <p className="text-sm text-muted">Praha · Vídeň</p>
-                  <ThemeButton />
+                  <p className="text-sm text-muted">{ui.citiesLine}</p>
+                  <div className="flex items-center">
+                    <LocaleSwitch />
+                    <ThemeButton />
+                  </div>
                 </div>
               </Dialog.Content>
             </Dialog.Portal>
@@ -180,6 +211,8 @@ function Header() {
 
 function Footer() {
   const { setSettingsOpen } = usePrefs();
+  const { ui, nav } = useCopy();
+  const links = useLinks();
   return (
     <footer className="border-t border-line">
       <div className="mx-auto grid max-w-6xl gap-16 px-6 py-28 md:grid-cols-12 md:px-16">
@@ -188,35 +221,33 @@ function Footer() {
             <Mark />
             <span>HALDEN</span>
           </BrandLink>
-          <p className="mt-8 max-w-xs text-sm leading-relaxed text-muted">
-            Advokátní kancelář pro rozhodnutí, která mají váhu. Praha a Vídeň, jeden standard psaní.
-          </p>
+          <p className="mt-8 max-w-xs text-sm leading-relaxed text-muted">{ui.footerBlurb}</p>
         </div>
-        <nav aria-label="Patička" className="grid grid-cols-2 gap-8 text-sm md:col-span-4">
+        <nav aria-label={ui.navFooter} className="grid grid-cols-2 gap-8 text-sm md:col-span-4">
           <ul className="space-y-3">
             {nav.map((item) => (
               <li key={item.to}>
-                <Link to={item.to} className="text-muted transition-colors duration-1000 hover:text-fg">
+                <RouteLink to={item.to} className="text-muted transition-colors duration-1000 hover:text-fg">
                   {item.label}
-                </Link>
+                </RouteLink>
               </li>
             ))}
           </ul>
           <ul className="space-y-3">
             <li>
-              <Link to="/kontakt" className="text-muted transition-colors duration-1000 hover:text-fg">
-                Kontakt
-              </Link>
+              <RouteLink to={links.contact} className="text-muted transition-colors duration-1000 hover:text-fg">
+                {ui.contact}
+              </RouteLink>
             </li>
             <li>
-              <Link to="/soukromi" className="text-muted transition-colors duration-1000 hover:text-fg">
-                Soukromí
-              </Link>
+              <RouteLink to={links.privacy} className="text-muted transition-colors duration-1000 hover:text-fg">
+                {ui.privacy}
+              </RouteLink>
             </li>
             <li>
-              <Link to="/cookies" className="text-muted transition-colors duration-1000 hover:text-fg">
-                Cookies
-              </Link>
+              <RouteLink to={links.cookies} className="text-muted transition-colors duration-1000 hover:text-fg">
+                {ui.cookies}
+              </RouteLink>
             </li>
             <li>
               <button
@@ -224,14 +255,14 @@ function Footer() {
                 onClick={() => setSettingsOpen(true)}
                 className="text-left text-muted transition-colors duration-1000 hover:text-fg"
               >
-                Nastavení cookies
+                {ui.cookieSettings}
               </button>
             </li>
           </ul>
         </nav>
         <div className="text-sm text-muted md:col-span-3">
-          <p>Praha — schůzka po potvrzení</p>
-          <p className="mt-2">Vídeň — schůzka po potvrzení</p>
+          <p>{ui.meetPrague}</p>
+          <p className="mt-2">{ui.meetVienna}</p>
           <a href={`mailto:${site.email}`} className="mt-6 inline-flex min-h-11 items-center text-fg">
             {site.email}
           </a>
@@ -245,11 +276,9 @@ function Footer() {
           rel="noreferrer"
           className="text-xs tracking-widest uppercase transition-colors duration-1000 hover:text-fg"
         >
-          Koncept k prodeji · vytvořilo studiovoid.cz
+          {ui.creditBefore} · {ui.creditAfter}
         </a>
-        <p className="max-w-xl">
-          Texty na tomto webu nejsou právní radou a nezakládají vztah advokát–klient.
-        </p>
+        <p className="max-w-xl">{ui.disclaimer}</p>
       </div>
     </footer>
   );
@@ -257,6 +286,8 @@ function Footer() {
 
 function CookieBar() {
   const { ready, consent, accept, settingsOpen, setSettingsOpen, views } = usePrefs();
+  const { ui } = useCopy();
+  const links = useLinks();
   const showBar = ready && consent === null;
 
   return (
@@ -265,25 +296,20 @@ function CookieBar() {
         <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bg px-6 py-3 md:px-16">
           <div className="mx-auto flex max-w-6xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <p className="max-w-lg text-xs leading-relaxed text-muted">
-              Nezbytné uloží jen volbu a barevný režim v tomto prohlížeči. Měření je místní počítadlo
-              stránek — nic neodesíláme dál.{" "}
-              <Link to="/cookies" className="text-fg underline decoration-line underline-offset-4">
-                Více o cookies
-              </Link>
+              {ui.cookieBar}{" "}
+              <RouteLink to={links.cookies} className="text-fg underline decoration-line underline-offset-4">
+                {ui.cookieMore}
+              </RouteLink>
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              <button
-                type="button"
-                onClick={() => setSettingsOpen(true)}
-                className="press btn"
-              >
-                Nastavení
+              <button type="button" onClick={() => setSettingsOpen(true)} className="press btn">
+                {ui.cookieSettingsBtn}
               </button>
               <button type="button" onClick={() => accept(false)} className="press btn">
-                Jen nezbytné
+                {ui.cookieEssentialOnly}
               </button>
               <button type="button" onClick={() => accept(true)} className="press btn">
-                Povolit měření
+                {ui.cookieAllow}
               </button>
             </div>
           </div>
@@ -293,43 +319,34 @@ function CookieBar() {
         <Dialog.Portal>
           <Dialog.Overlay className="fixed inset-0 z-50 bg-fg/40" />
           <Dialog.Content className="fixed top-1/2 left-1/2 z-50 w-[min(100%-2rem,36rem)] -translate-x-1/2 -translate-y-1/2 bg-bg p-6 text-fg outline-none md:p-8">
-            <Dialog.Title className="text-2xl font-normal tracking-tight">Cookies</Dialog.Title>
+            <Dialog.Title className="text-2xl font-normal tracking-tight">{ui.cookieTitle}</Dialog.Title>
             <Dialog.Description className="mt-4 text-sm leading-relaxed text-muted">
-              Volba se uloží jen v tomto prohlížeči. Můžete ji kdykoli změnit.
+              {ui.cookieDialog}
             </Dialog.Description>
             <ul className="mt-8 divide-y divide-line border-y border-line">
               <li className="flex items-start justify-between gap-6 py-4">
                 <div>
-                  <p className="text-sm text-fg">Nezbytné</p>
-                  <p className="mt-1 text-sm text-muted">Uloží souhlas a barevný režim. Vždy zapnuto.</p>
+                  <p className="text-sm text-fg">{ui.cookieNecessary}</p>
+                  <p className="mt-1 text-sm text-muted">{ui.cookieNecessaryText}</p>
                 </div>
-                <span className="text-sm text-muted">Zapnuto</span>
+                <span className="text-sm text-muted">{ui.cookieOn}</span>
               </li>
               <li className="flex items-start justify-between gap-6 py-4">
                 <div>
-                  <p className="text-sm text-fg">Měření</p>
+                  <p className="text-sm text-fg">{ui.cookieMeasure}</p>
                   <p className="mt-1 text-sm text-muted">
-                    Počítadlo zobrazení stránek v tomto prohlížeči. Žádný externí nástroj, žádné odeslání
-                    na server.
-                    {consent?.measure ? ` Zatím ${views} zobrazení.` : ""}
+                    {ui.cookieMeasureText}
+                    {consent?.measure ? ` ${ui.cookieViews.replace("{n}", String(views))}` : ""}
                   </p>
                 </div>
               </li>
             </ul>
             <div className="mt-8 flex flex-col gap-2 sm:flex-row sm:justify-end">
-              <button
-                type="button"
-                onClick={() => accept(false)}
-                className="press btn btn-line"
-              >
-                Jen nezbytné
+              <button type="button" onClick={() => accept(false)} className="press btn btn-line">
+                {ui.cookieEssentialOnly}
               </button>
-              <button
-                type="button"
-                onClick={() => accept(true)}
-                className="press btn btn-solid"
-              >
-                Povolit měření
+              <button type="button" onClick={() => accept(true)} className="press btn btn-solid">
+                {ui.cookieAllow}
               </button>
             </div>
           </Dialog.Content>
@@ -341,14 +358,19 @@ function CookieBar() {
 
 export function Shell({ children }: { children: ReactNode }) {
   const { ready, consent } = usePrefs();
+  const locale = useLocale();
   const pad = ready && consent === null;
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+  const { ui } = useCopy();
   return (
     <>
       <a
         href="#obsah"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-field focus:px-4 focus:py-3 focus:text-sm focus:text-field-fg"
       >
-        Přeskočit na obsah
+        {ui.skip}
       </a>
       <Header />
       <main id="obsah">{children}</main>

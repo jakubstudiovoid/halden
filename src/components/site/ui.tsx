@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { useCopy, RouteLink } from "@/i18n/locale";
 import { useEffect, useRef, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
@@ -91,8 +92,9 @@ export function PageHeader({
 }
 
 export function Crumbs({ items }: { items: { to?: string; label: string }[] }) {
+  const { ui } = useCopy();
   return (
-    <nav aria-label="Drobečková navigace" className="mx-auto w-full max-w-6xl px-6 pt-32 md:px-16 md:pt-36">
+    <nav aria-label={ui.crumbs} className="mx-auto w-full max-w-6xl px-6 pt-32 md:px-16 md:pt-36">
       <ol className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
         {items.map((item, index) => {
           const last = index === items.length - 1;
@@ -100,9 +102,9 @@ export function Crumbs({ items }: { items: { to?: string; label: string }[] }) {
             <li key={item.label} className="flex items-center gap-3">
               {index > 0 ? <span aria-hidden="true">/</span> : null}
               {item.to && !last ? (
-                <Link to={item.to} className="transition-colors duration-1000 hover:text-fg">
+                <RouteLink to={item.to} className="transition-colors duration-1000 hover:text-fg">
                   {item.label}
-                </Link>
+                </RouteLink>
               ) : (
                 <span aria-current={last ? "page" : undefined} className={last ? "text-fg" : undefined}>
                   {item.label}

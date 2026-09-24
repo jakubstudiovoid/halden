@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { publicPaths } from "@/content/site";
+import { allPublicPaths } from "@/content/catalog";
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async ({ request }) => {
         const origin = new URL(request.url).origin;
-        const urls = publicPaths
+        const urls = allPublicPaths()
           .map(
             (path) =>
               `<url><loc>${origin}${path}</loc><changefreq>monthly</changefreq></url>`,

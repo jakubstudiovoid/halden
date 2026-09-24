@@ -1,61 +1,48 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { site } from "@/content/site";
+import { createFileRoute } from "@tanstack/react-router";
+import { ui } from "@/content/site";
 import { pageHead } from "@/lib/meta";
 import { PageHeader } from "@/components/site/ui";
+import { RouteLink, useCopy, useLinks } from "@/i18n/locale";
 
 export const Route = createFileRoute("/soukromi")({
-  head: () =>
-    pageHead(
-      "Ochrana soukromí",
-      "Jak Halden v této prezentaci zachází s osobními údaji. Formulář se neukládá a neodesílá.",
-    ),
+  head: () => pageHead("Ochrana soukromí", ui.metaPrivacy),
   component: PrivacyPage,
 });
 
-function PrivacyPage() {
+export function PrivacyPage() {
+  const { ui: copy, site } = useCopy();
+  const links = useLinks();
   return (
     <>
-      <PageHeader
-        kicker="Soukromí"
-        title="Údaje, které od vás nechceme zbytečně."
-        lede="Tato stránka popisuje prezentaci webu Halden. Není to právní rada a nenahrazuje informace, které by správce dával v ostrém provozu."
-      />
+      <PageHeader kicker={copy.privacyKicker} title={copy.privacyTitle} lede={copy.privacyLede} />
       <div className="mx-auto max-w-3xl space-y-10 px-6 pb-24 text-base leading-relaxed">
         <section>
-          <h2 className="text-2xl font-normal tracking-tight">Kdo web provozuje</h2>
+          <h2 className="text-2xl font-normal tracking-tight">{copy.whoTitle}</h2>
           <p className="mt-4 text-muted">
-            Prezentaci vede identita {site.legalName}. Kontakt: {site.email}. Neuvádíme číslo zápisu ani
-            adresu sídla, protože jde o navržený web, ne o veřejný výpis konkrétní kanceláře.
+            {copy.whoBefore} {site.legalName}. {copy.whoAfter} {site.email}. {copy.whoNote}
           </p>
         </section>
         <section>
-          <h2 className="text-2xl font-normal tracking-tight">Co se děje se zprávou z formuláře</h2>
-          <p className="mt-4 text-muted">
-            Formulář na stránce Kontakt ověří tvar údajů na serveru a nic neuloží. Jméno, e-mail ani text
-            zprávy se nezapisují do databáze, neposílají se e-mailem a neobjevují se v logu aplikace. Po
-            odpovědi serveru zůstanou jen v paměti vašeho prohlížeče, dokud stránku neopustíte.
-          </p>
+          <h2 className="text-2xl font-normal tracking-tight">{copy.formTitle}</h2>
+          <p className="mt-4 text-muted">{copy.formBody}</p>
         </section>
         <section>
-          <h2 className="text-2xl font-normal tracking-tight">Co ukládá prohlížeč</h2>
+          <h2 className="text-2xl font-normal tracking-tight">{copy.browserTitle}</h2>
           <p className="mt-4 text-muted">
-            Barevný režim a volba cookies jsou v localStorage tohoto prohlížeče. Když povolíte měření,
-            přibude místní počítadlo zobrazených stránek. To počítadlo zařízení neopouští. Když zvolíte jen
-            nezbytné, počítadlo smažeme. Podrobnosti jsou na stránce{" "}
-            <Link to="/cookies" className="text-fg underline decoration-line underline-offset-4">
-              Cookies
-            </Link>
+            {copy.browserBody}{" "}
+            <RouteLink to={links.cookies} className="text-fg underline decoration-line underline-offset-4">
+              {copy.cookies}
+            </RouteLink>
             .
           </p>
         </section>
         <section>
-          <h2 className="text-2xl font-normal tracking-tight">Vaše volby</h2>
+          <h2 className="text-2xl font-normal tracking-tight">{copy.choicesTitle}</h2>
           <p className="mt-4 text-muted">
-            Volbu cookies změníte kdykoli odkazem Nastavení cookies v patičce. Místní data smažete i
-            vyčištěním úložiště prohlížeče pro tento web. Na cokoli dalšího odpovězte na {site.email}.
+            {copy.choicesBody} {site.email}.
           </p>
         </section>
-        <p className="text-sm text-muted">Platné k 24. září 2026.</p>
+        <p className="text-sm text-muted">{copy.privacyDate}</p>
       </div>
     </>
   );
