@@ -412,10 +412,10 @@ export const clients = [
 ] as const;
 
 export const facts = [
-  { value: "2009", label: "Založeno v Praze" },
-  { value: "2018", label: "Stůl ve Vídni, ne druhá značka" },
-  { value: "28", label: "Právníků v jednom standardu psaní" },
-  { value: "1", label: "Partner na věc, od začátku do konce" },
+  { value: "2009", lines: ["Ateliér v Praze", "Založen"] },
+  { value: "2018", lines: ["Stůl ve Vídni", "Ne druhá značka"] },
+  { value: "28", lines: ["Právníků", "Jeden standard"] },
+  { value: "1", lines: ["Partner na věc", "Až do konce"] },
 ] as const;
 
 export const questions = [

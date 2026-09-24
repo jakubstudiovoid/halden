@@ -157,9 +157,12 @@
   border-style: solid;
   border-width: 0.08em;
   border-color: var(--btn-ink);
+  outline: 0.08em solid transparent;
+  outline-offset: 0.4em;
   transition:
-    background-color 980ms cubic-bezier(0.16, 1, 0.3, 1),
-    color 980ms cubic-bezier(0.16, 1, 0.3, 1);
+    outline-color 980ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 980ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 980ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .field-wash .btn,
@@ -172,8 +175,15 @@
 .btn:hover,
 .btn-line:hover,
 .btn-solid:hover {
-  background: var(--btn-ink);
-  color: var(--btn-on);
+  background: transparent;
+  color: var(--btn-ink);
+  outline-color: var(--btn-ink);
+}
+
+.btn:focus-visible,
+.btn-line:focus-visible,
+.btn-solid:focus-visible {
+  outline-color: var(--btn-ink);
 }
 
 .btn:disabled,
@@ -270,8 +280,9 @@
 .press.btn {
   transition:
     scale 420ms cubic-bezier(0.16, 1, 0.3, 1),
-    background-color 980ms cubic-bezier(0.16, 1, 0.3, 1),
-    color 980ms cubic-bezier(0.16, 1, 0.3, 1);
+    outline-color 980ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 980ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 980ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 ::view-transition-group(root),

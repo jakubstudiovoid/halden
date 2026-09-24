@@ -61,8 +61,11 @@ function Home() {
           </div>
           <dl className="mt-20 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-field-muted/25 pt-10 md:grid-cols-4">
             {facts.map((fact) => (
-              <div key={fact.label}>
-                <dt className="text-xs tracking-widest text-field-muted uppercase">{fact.label}</dt>
+              <div key={fact.value}>
+                <dt className="text-xs tracking-widest text-field-muted uppercase">
+                  <span className="block">{fact.lines[0]}</span>
+                  <span className="block">{fact.lines[1]}</span>
+                </dt>
                 <dd className="mt-3 text-xl font-normal tabular-nums">{fact.value}</dd>
               </div>
             ))}

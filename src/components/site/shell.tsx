@@ -245,7 +245,7 @@ function Footer() {
           rel="noreferrer"
           className="text-xs tracking-widest uppercase transition-colors duration-1000 hover:text-fg"
         >
-          Koncept k prodeji vytvořilo studiovoid.cz
+          Koncept k prodeji · vytvořilo studiovoid.cz
         </a>
         <p className="max-w-xl">
           Texty na tomto webu nejsou právní radou a nezakládají vztah advokát–klient.
