@@ -9,7 +9,7 @@ export function Mark({
   className?: string;
   tone?: "default" | "on-field";
 }) {
-  const solid = tone === "on-field" ? "var(--field-fg)" : "var(--field)";
+  const solid = tone === "on-field" ? "var(--field-fg)" : "var(--mark)";
   const stroke = tone === "on-field" ? "var(--field-fg)" : "currentColor";
   return (
     <svg viewBox="0 0 32 32" className={className} aria-hidden="true">

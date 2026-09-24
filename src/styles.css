@@ -23,10 +23,11 @@
   --muted: #8f9bb0;
   --surface: #0b101a;
   --line: #171f2e;
-  --field: #17369e;
-  --field-deep: #0c1c4e;
+  --field: #3d5470;
+  --field-deep: #243446;
+  --mark: #7d96b0;
   --field-fg: #f6f3ec;
-  --field-muted: #c9d4ef;
+  --field-muted: #d5dee8;
 }
 
 :root[data-theme="light"] {
@@ -36,10 +37,11 @@
   --muted: #5c6578;
   --surface: #efeae1;
   --line: #e4ddd0;
-  --field: #17369e;
-  --field-deep: #0c1c4e;
+  --field: #3a516c;
+  --field-deep: #243446;
+  --mark: #3a516c;
   --field-fg: #f6f3ec;
-  --field-muted: #c9d4ef;
+  --field-muted: #d5dee8;
 }
 
 @layer base {
@@ -205,7 +207,7 @@
 }
 
 .field-wash {
-  background: linear-gradient(168deg, #2c52d4 0%, #1a3cb8 46%, #10245c 100%);
+  background: linear-gradient(168deg, #445e76 0%, #3d5470 44%, #243446 100%);
   color: var(--field-fg);
 }
 
