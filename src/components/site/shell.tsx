@@ -332,10 +332,11 @@ function CookieBar() {
 
 function inView(el: HTMLElement) {
   const rect = el.getBoundingClientRect();
-  if (rect.width === 0 && rect.height === 0) return false;
+  if (rect.width === 0 || rect.height === 0) return false;
   const view = window.innerHeight;
   const visible = Math.min(rect.bottom, view) - Math.max(rect.top, 0);
-  return visible > 24;
+  if (visible <= 0) return false;
+  return visible > 8 || visible >= rect.height * 0.6;
 }
 
 function useContentReveal() {
@@ -350,7 +351,11 @@ function useContentReveal() {
 
     const mark = (el: HTMLElement, index: number) => {
       if (el.dataset.in != null) return;
-      if (!reduced) el.style.transitionDelay = `${Math.min(index, 5) * 180}ms`;
+      const label = el.classList.contains("kicker") || el.getBoundingClientRect().height < 32;
+      if (!reduced) {
+        if (label) el.dataset.pace = "label";
+        el.style.transitionDelay = label ? "0ms" : `${Math.min(index, 5) * 180}ms`;
+      }
       el.dataset.in = "";
     };
 
