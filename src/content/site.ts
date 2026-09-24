@@ -513,7 +513,7 @@ export const ui = {
   heroTitle: "Klid v rozhodnutích, která mají váhu.",
   heroLede: "Zastupujeme vlastníky, vedení a rodiny. Málo věcí najednou. Každou do konce.",
   heroCta: "Domluvit rozhovor",
-  heroMore: "Jak pracujeme",
+  heroMore: "Naše filosofie",
   heroAlt: "Tým kanceláře Halden.",
   quote: "Halden není síť. Je to kancelář, ve které partner, který věc přijme, ji také vede.",
   quoteText:

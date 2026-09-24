@@ -57,7 +57,7 @@ export function Home() {
             <RouteLink to={links.contact} className="press btn">
               {ui.heroCta}
             </RouteLink>
-            <RouteLink to={links.approach} className="link-draw inline-flex min-h-11 items-center text-sm text-field-fg">
+            <RouteLink to={links.approach} className="link-draw inline-flex min-h-11 items-center text-sm tracking-[0.14em] text-field-fg uppercase">
               {ui.heroMore}
             </RouteLink>
           </div>
