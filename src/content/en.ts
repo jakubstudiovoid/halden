@@ -16,6 +16,7 @@ export const nav = [
   { to: "/en/studio", label: "Studio" },
   { to: "/en/people", label: "People" },
   { to: "/en/notes", label: "Notes" },
+  { to: "/en/contact", label: "Contact" },
 ];
 
 export const practices: Practice[] = [
@@ -377,7 +378,7 @@ export const ui = {
   themeLight: "Light mode",
   themeDark: "Dark mode",
   toEnglish: "English",
-  toCzech: "Česky",
+  toCzech: "Čeština",
   navMain: "Main",
   navMobile: "Mobile",
   navFooter: "Footer",

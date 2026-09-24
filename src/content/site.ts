@@ -14,6 +14,7 @@ export const nav = [
   { to: "/atelier", label: "Ateliér" },
   { to: "/lide", label: "Lidé" },
   { to: "/poznamky", label: "Poznámky" },
+  { to: "/kontakt", label: "Kontakt" },
 ] as const;
 
 export type Practice = {
@@ -479,7 +480,7 @@ export const ui = {
   themeLight: "Světlý režim",
   themeDark: "Tmavý režim",
   toEnglish: "English",
-  toCzech: "Česky",
+  toCzech: "Čeština",
   navMain: "Hlavní",
   navMobile: "Mobilní",
   navFooter: "Patička",

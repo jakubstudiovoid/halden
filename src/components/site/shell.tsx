@@ -40,11 +40,11 @@ function LocaleSwitch({ overField }: { overField?: boolean }) {
       lang={locale === "cs" ? "en" : "cs"}
       aria-label={locale === "cs" ? ui.toEnglish : ui.toCzech}
       className={cn(
-        "inline-flex min-h-11 items-center px-2 text-xs tracking-widest transition-colors duration-1000",
+        "inline-flex min-h-11 items-center px-2 text-xs tracking-widest uppercase transition-colors duration-1000",
         overField ? "text-field-muted hover:text-field-fg" : "text-muted hover:text-fg",
       )}
     >
-      {locale === "cs" ? "EN" : "CS"}
+      {locale === "cs" ? ui.toEnglish : ui.toCzech}
     </Link>
   );
 }
@@ -79,7 +79,6 @@ function Header() {
   const path = useRouterState({ select: (state) => state.location.pathname });
   const overField = path === "/" || path === "/en" ? !scrolled : false;
   const { ui, nav } = useCopy();
-  const links = useLinks();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.72);
@@ -126,23 +125,7 @@ function Header() {
             );
           })}
         </nav>
-        <div className="flex items-center gap-1">
-          <RouteLink
-            to={links.contact}
-            ariaCurrent={path === links.contact}
-            className={cn(
-              "hidden min-h-11 items-center text-xs tracking-widest uppercase transition-colors duration-1000 sm:inline-flex",
-              overField
-                ? path === links.contact
-                  ? "text-field-fg"
-                  : "text-field-muted hover:text-field-fg"
-                : path === links.contact
-                  ? "text-fg"
-                  : "text-muted hover:text-fg",
-            )}
-          >
-            {ui.contact}
-          </RouteLink>
+        <div className="flex items-center">
           <LocaleSwitch overField={overField} />
           <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger asChild>
@@ -186,13 +169,6 @@ function Header() {
                       {item.label}
                     </RouteLink>
                   ))}
-                  <RouteLink
-                    to={links.contact}
-                    onClick={() => setOpen(false)}
-                    className="border-t border-line py-6 text-4xl tracking-tight"
-                  >
-                    {ui.contact}
-                  </RouteLink>
                 </nav>
                 <div className="mt-auto flex items-center justify-between border-t border-line py-6">
                   <p className="text-sm text-muted">{ui.citiesLine}</p>
@@ -234,11 +210,6 @@ function Footer() {
             ))}
           </ul>
           <ul className="space-y-3">
-            <li>
-              <RouteLink to={links.contact} className="text-muted transition-colors duration-1000 hover:text-fg">
-                {ui.contact}
-              </RouteLink>
-            </li>
             <li>
               <RouteLink to={links.privacy} className="text-muted transition-colors duration-1000 hover:text-fg">
                 {ui.privacy}
