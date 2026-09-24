@@ -31,7 +31,7 @@ function PracticePage() {
       />
       <header className="mx-auto w-full max-w-6xl px-6 pt-10 pb-12 md:px-10">
         <p className="text-sm text-muted tabular-nums">{practice.index}</p>
-        <h1 className="mt-6 max-w-3xl text-4xl font-medium tracking-tight md:text-6xl">{practice.title}</h1>
+        <h1 className="mt-6 max-w-3xl text-4xl font-normal tracking-tight md:text-6xl">{practice.title}</h1>
         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted">{practice.lead}</p>
       </header>
       <div className="mx-auto grid max-w-6xl gap-16 px-6 md:grid-cols-2 md:px-10">
@@ -85,7 +85,7 @@ function PracticePage() {
       <div className="mx-auto mt-16 max-w-6xl px-6 md:px-10">
         <Link
           to="/kontakt"
-          className="press inline-flex min-h-11 items-center bg-field px-5 text-sm text-field-fg"
+          className="press btn btn-solid"
         >
           Napsat k této věci
         </Link>

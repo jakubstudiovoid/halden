@@ -19,7 +19,7 @@ export const Route = createRootRoute({
         content:
           "Halden je advokátní kancelář v Praze a ve Vídni. Přesná právní práce pro vlastníky, vedení a rodiny.",
       },
-      { name: "theme-color", content: "#08101c" },
+      { name: "theme-color", content: "#070c16" },
       { name: "referrer", content: "strict-origin-when-cross-origin" },
     ],
     links: [
@@ -60,7 +60,7 @@ function NotFound() {
   return (
     <div className="mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col justify-center px-6 pt-24 md:px-10">
       <p className="text-sm text-muted">404</p>
-      <h1 className="mt-6 max-w-xl text-4xl font-medium tracking-tight md:text-6xl">
+      <h1 className="mt-6 max-w-xl text-4xl font-normal tracking-tight md:text-6xl">
         Tahle stránka tu není.
       </h1>
       <p className="mt-6 max-w-lg text-muted">
@@ -69,7 +69,7 @@ function NotFound() {
       <div className="mt-10 flex flex-wrap gap-6">
         <Link
           to="/"
-          className="press inline-flex min-h-11 items-center bg-field px-5 text-sm text-field-fg"
+          className="press btn btn-solid"
         >
           Úvod
         </Link>

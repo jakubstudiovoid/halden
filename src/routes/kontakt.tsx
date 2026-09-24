@@ -78,7 +78,7 @@ function ContactPage() {
       <div className="mx-auto grid max-w-6xl gap-16 px-6 pb-24 md:grid-cols-12 md:px-10">
         <div className="md:col-span-7">
           {status === "sent" ? (
-            <p role="status" className="max-w-xl text-2xl font-medium tracking-tight">
+            <p role="status" className="max-w-xl text-2xl font-normal tracking-tight">
               Děkujeme. Zpráva je připravená. V této prezentaci se neukládá ani neodesílá — v provozu
               odchází partnerovi, který by věc vedl.
             </p>
@@ -123,7 +123,7 @@ function ContactPage() {
                   onChange={(event) => setValues({ ...values, topic: event.target.value })}
                   aria-invalid={Boolean(errors.topic)}
                   aria-describedby={errors.topic ? "tema-chyba" : undefined}
-                  className="mt-3 w-full border-b border-line bg-transparent py-3 text-fg outline-none"
+                  className="line-field mt-2"
                 >
                   <option value="">Vyberte</option>
                   {topics.map((topic) => (
@@ -150,7 +150,7 @@ function ContactPage() {
                   onChange={(event) => setValues({ ...values, message: event.target.value })}
                   aria-invalid={Boolean(errors.message)}
                   aria-describedby={errors.message ? "zprava-chyba" : undefined}
-                  className="mt-3 w-full resize-y border-b border-line bg-transparent py-3 text-fg outline-none"
+                  className="line-field mt-2 resize-y"
                 />
                 {errors.message ? (
                   <p id="zprava-chyba" className="mt-2 text-sm text-fg">
@@ -190,7 +190,7 @@ function ContactPage() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="press inline-flex min-h-11 items-center bg-field px-5 text-sm text-field-fg disabled:opacity-60"
+                className="press btn btn-solid disabled:opacity-60"
               >
                 {status === "sending" ? "Odesílám" : "Odeslat"}
               </button>
@@ -247,7 +247,7 @@ function Field({
         onChange={(event) => onChange(event.target.value)}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-chyba` : undefined}
-        className="mt-3 w-full border-b border-line bg-transparent py-3 text-fg outline-none"
+        className="line-field mt-2"
       />
       {error ? (
         <p id={`${id}-chyba`} className="mt-2 text-sm text-fg">

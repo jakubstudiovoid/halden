@@ -40,7 +40,7 @@ function StudioPage() {
         </div>
       </div>
       <section className="mx-auto mt-20 grid max-w-6xl gap-12 px-6 md:grid-cols-12 md:px-10">
-        <h2 className="text-3xl font-medium tracking-tight md:col-span-5">Proč ten název</h2>
+        <h2 className="text-3xl font-normal tracking-tight md:col-span-5">Proč ten název</h2>
         <div className="space-y-5 leading-relaxed text-muted md:col-span-7">
           <p>
             Ateliér proto, že věc má autora. Ne proto, že bychom byli méně přísní na paragraf. {site.lawyers}{" "}

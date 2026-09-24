@@ -31,7 +31,7 @@ function NotesPage() {
               <time dateTime={note.date} className="text-sm text-muted md:col-span-3">
                 {note.displayDate}
               </time>
-              <span className="text-2xl font-medium tracking-tight md:col-span-4">{note.title}</span>
+              <span className="text-2xl font-normal tracking-tight md:col-span-4">{note.title}</span>
               <span className="text-muted md:col-span-4">{note.excerpt}</span>
               <span className="text-sm text-muted md:col-span-1 md:text-right">{note.minutes} min</span>
             </Link>

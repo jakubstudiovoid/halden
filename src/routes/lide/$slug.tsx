@@ -38,11 +38,11 @@ function PersonPage() {
         items={[{ to: "/", label: "Halden" }, { to: "/lide", label: "Lidé" }, { label: person.name }]}
       />
       <header className="mx-auto grid w-full max-w-6xl gap-10 px-6 pt-12 md:grid-cols-12 md:px-10">
-        <p className="text-5xl font-medium tracking-tight text-muted tabular-nums md:col-span-3">
+        <p className="text-5xl font-normal tracking-tight text-muted tabular-nums md:col-span-3">
           {person.given}
         </p>
         <div className="md:col-span-9">
-          <h1 className="text-4xl font-medium tracking-tight md:text-6xl">{person.name}</h1>
+          <h1 className="text-4xl font-normal tracking-tight md:text-6xl">{person.name}</h1>
           <p className="mt-4 text-muted">
             {person.role} · {person.focus}
           </p>
@@ -78,7 +78,7 @@ function PersonPage() {
       <div className="mx-auto mt-12 max-w-6xl px-6 md:px-10">
         <Link
           to="/kontakt"
-          className="press inline-flex min-h-11 items-center bg-field px-5 text-sm text-field-fg"
+          className="press btn btn-solid"
         >
           Napsat {person.name.split(" ")[0]}
         </Link>

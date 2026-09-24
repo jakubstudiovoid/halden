@@ -22,14 +22,14 @@ function PrivacyPage() {
       />
       <div className="mx-auto max-w-3xl space-y-10 px-6 pb-24 text-base leading-relaxed">
         <section>
-          <h2 className="text-2xl font-medium tracking-tight">Kdo web provozuje</h2>
+          <h2 className="text-2xl font-normal tracking-tight">Kdo web provozuje</h2>
           <p className="mt-4 text-muted">
             Prezentaci vede identita {site.legalName}. Kontakt: {site.email}. Neuvádíme číslo zápisu ani
             adresu sídla, protože jde o navržený web, ne o veřejný výpis konkrétní kanceláře.
           </p>
         </section>
         <section>
-          <h2 className="text-2xl font-medium tracking-tight">Co se děje se zprávou z formuláře</h2>
+          <h2 className="text-2xl font-normal tracking-tight">Co se děje se zprávou z formuláře</h2>
           <p className="mt-4 text-muted">
             Formulář na stránce Kontakt ověří tvar údajů na serveru a nic neuloží. Jméno, e-mail ani text
             zprávy se nezapisují do databáze, neposílají se e-mailem a neobjevují se v logu aplikace. Po
@@ -37,7 +37,7 @@ function PrivacyPage() {
           </p>
         </section>
         <section>
-          <h2 className="text-2xl font-medium tracking-tight">Co ukládá prohlížeč</h2>
+          <h2 className="text-2xl font-normal tracking-tight">Co ukládá prohlížeč</h2>
           <p className="mt-4 text-muted">
             Barevný režim a volba cookies jsou v localStorage tohoto prohlížeče. Když povolíte měření,
             přibude místní počítadlo zobrazených stránek. To počítadlo zařízení neopouští. Když zvolíte jen
@@ -49,7 +49,7 @@ function PrivacyPage() {
           </p>
         </section>
         <section>
-          <h2 className="text-2xl font-medium tracking-tight">Vaše volby</h2>
+          <h2 className="text-2xl font-normal tracking-tight">Vaše volby</h2>
           <p className="mt-4 text-muted">
             Volbu cookies změníte kdykoli odkazem Nastavení cookies v patičce. Místní data smažete i
             vyčištěním úložiště prohlížeče pro tento web. Na cokoli dalšího odpovězte na {site.email}.

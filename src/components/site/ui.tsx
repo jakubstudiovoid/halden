@@ -80,13 +80,11 @@ export function PageHeader({
   lede?: string;
 }) {
   return (
-    <header className="mx-auto w-full max-w-6xl px-6 pt-28 pb-14 md:px-10 md:pt-36 md:pb-20">
-      <p className="text-sm text-muted">{kicker}</p>
-      <h1 className="mt-6 max-w-4xl text-4xl font-medium tracking-tight text-fg md:text-6xl">
-        {title}
-      </h1>
+    <header className="mx-auto w-full max-w-6xl px-6 pt-36 pb-20 md:px-12 md:pt-48 md:pb-28">
+      <p className="kicker">{kicker}</p>
+      <h1 className="display mt-8 max-w-4xl text-4xl text-fg md:text-6xl">{title}</h1>
       {lede ? (
-        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted">{lede}</p>
+        <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">{lede}</p>
       ) : null}
     </header>
   );
@@ -94,7 +92,7 @@ export function PageHeader({
 
 export function Crumbs({ items }: { items: { to?: string; label: string }[] }) {
   return (
-    <nav aria-label="Drobečková navigace" className="mx-auto w-full max-w-6xl px-6 pt-24 md:px-10 md:pt-28">
+    <nav aria-label="Drobečková navigace" className="mx-auto w-full max-w-6xl px-6 pt-28 md:px-12 md:pt-32">
       <ol className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
         {items.map((item, index) => {
           const last = index === items.length - 1;
@@ -128,7 +126,7 @@ export function FieldLink({
   return (
     <Link
       to={to}
-      className="press inline-flex min-h-11 items-center bg-field px-5 text-sm text-field-fg transition-colors duration-500 hover:bg-field-deep"
+      className="press btn btn-solid"
     >
       {children}
     </Link>
@@ -148,7 +146,7 @@ export function QuietLink({
     <Link
       to={to}
       className={cn(
-        "inline-flex min-h-11 items-center text-sm text-fg underline decoration-line underline-offset-4 transition-colors duration-500 hover:decoration-fg",
+        "link-draw inline-flex min-h-11 items-center text-sm text-fg",
         className,
       )}
     >
@@ -174,7 +172,7 @@ export function Photo({
 }) {
   return (
     <figure>
-      <div className="photo-frame overflow-hidden bg-surface">
+      <div className="photo-frame overflow-hidden border border-line p-2 md:p-3">
         <img
           src={src}
           alt={alt}
@@ -186,7 +184,7 @@ export function Photo({
           decoding="async"
         />
       </div>
-      {caption ? <figcaption className="mt-4 text-sm text-muted">{caption}</figcaption> : null}
+      {caption ? <figcaption className="mt-5 max-w-md text-sm leading-relaxed text-muted">{caption}</figcaption> : null}
     </figure>
   );
 }

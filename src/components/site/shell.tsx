@@ -40,20 +40,20 @@ function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-40 border-b transition-colors duration-500",
-        overField ? "border-transparent bg-transparent" : "border-line bg-bg/90 backdrop-blur-md",
+        "fixed inset-x-0 top-0 z-40 border-b transition-colors duration-700",
+        overField ? "border-transparent bg-transparent" : "border-line bg-bg/92 backdrop-blur-md",
       )}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 md:px-10">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-6 px-6 md:px-12">
         <Link
           to="/"
           aria-label="Halden, úvod"
           className={cn("flex items-center gap-3", overField ? "text-field-fg" : "text-fg")}
         >
-          <Mark tone={overField ? "on-field" : "default"} className="size-8" />
-          <span className="text-sm tracking-widest">HALDEN</span>
+          <Mark tone={overField ? "on-field" : "default"} className="size-7" />
+          <span className="text-xs tracking-widest">HALDEN</span>
         </Link>
-        <nav aria-label="Hlavní" className="hidden items-center gap-7 lg:flex">
+        <nav aria-label="Hlavní" className="hidden items-center gap-8 lg:flex">
           {nav.map((item) => {
             const active = path === item.to || path.startsWith(`${item.to}/`);
             return (
@@ -62,7 +62,7 @@ function Header() {
                 to={item.to}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "text-sm transition-colors duration-500",
+                  "text-xs tracking-widest uppercase transition-colors duration-700",
                   overField
                     ? active
                       ? "text-field-fg"
@@ -81,10 +81,8 @@ function Header() {
           <Link
             to="/kontakt"
             className={cn(
-              "press hidden min-h-11 items-center px-3 text-sm underline underline-offset-4 transition-colors duration-500 sm:inline-flex",
-              overField
-                ? "text-field-fg decoration-field-muted hover:decoration-field-fg"
-                : "text-fg decoration-line hover:decoration-fg",
+              "link-draw hidden min-h-11 items-center text-xs tracking-widest uppercase sm:inline-flex",
+              overField ? "text-field-fg" : "text-fg",
             )}
           >
             Kontakt
@@ -121,13 +119,13 @@ function Header() {
                     </button>
                   </Dialog.Close>
                 </div>
-                <nav aria-label="Mobilní" className="mt-16 flex flex-col">
+                <nav aria-label="Mobilní" className="mt-20 flex flex-col">
                   {nav.map((item) => (
                     <Link
                       key={item.to}
                       to={item.to}
                       onClick={() => setOpen(false)}
-                      className="border-t border-line py-5 text-3xl font-medium tracking-tight"
+                      className="border-t border-line py-6 text-4xl tracking-tight"
                     >
                       {item.label}
                     </Link>
@@ -135,7 +133,7 @@ function Header() {
                   <Link
                     to="/kontakt"
                     onClick={() => setOpen(false)}
-                    className="border-t border-line py-5 text-3xl font-medium tracking-tight"
+                    className="border-t border-line py-6 text-4xl tracking-tight"
                   >
                     Kontakt
                   </Link>
@@ -157,13 +155,13 @@ function Footer() {
   const { setSettingsOpen } = usePrefs();
   return (
     <footer className="border-t border-line">
-      <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-12 md:px-10">
+      <div className="mx-auto grid max-w-6xl gap-16 px-6 py-24 md:grid-cols-12 md:px-12">
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
-            <Mark className="size-8" />
-            <span className="text-sm tracking-widest">HALDEN</span>
+            <Mark className="size-7" />
+            <span className="text-xs tracking-widest">HALDEN</span>
           </div>
-          <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted">
+          <p className="mt-8 max-w-xs text-sm leading-relaxed text-muted">
             Advokátní kancelář pro rozhodnutí, která mají váhu. Praha a Vídeň, jeden standard psaní.
           </p>
         </div>
@@ -217,7 +215,7 @@ function Footer() {
           </a>
         </div>
       </div>
-      <div className="mx-auto flex max-w-6xl flex-col gap-3 border-t border-line px-6 py-6 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-10">
+      <div className="mx-auto flex max-w-6xl flex-col gap-3 border-t border-line px-6 py-8 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-12">
         <p>© {new Date().getFullYear()} {site.name}</p>
         <p className="max-w-xl">
           Texty na tomto webu nejsou právní radou a nezakládají vztah advokát–klient.
@@ -254,14 +252,14 @@ function CookieBar() {
               <button
                 type="button"
                 onClick={() => accept(false)}
-                className="press inline-flex min-h-11 items-center justify-center border border-line px-4 text-sm text-fg"
+                className="press btn btn-line"
               >
                 Jen nezbytné
               </button>
               <button
                 type="button"
                 onClick={() => accept(true)}
-                className="press inline-flex min-h-11 items-center justify-center bg-field px-4 text-sm text-field-fg"
+                className="press btn btn-solid"
               >
                 Povolit měření
               </button>
@@ -273,7 +271,7 @@ function CookieBar() {
         <Dialog.Portal>
           <Dialog.Overlay className="fixed inset-0 z-50 bg-fg/40" />
           <Dialog.Content className="fixed top-1/2 left-1/2 z-50 w-[min(100%-2rem,36rem)] -translate-x-1/2 -translate-y-1/2 bg-bg p-6 text-fg outline-none md:p-8">
-            <Dialog.Title className="text-2xl font-medium tracking-tight">Cookies</Dialog.Title>
+            <Dialog.Title className="text-2xl font-normal tracking-tight">Cookies</Dialog.Title>
             <Dialog.Description className="mt-4 text-sm leading-relaxed text-muted">
               Volba se uloží jen v tomto prohlížeči. Můžete ji kdykoli změnit.
             </Dialog.Description>
@@ -300,14 +298,14 @@ function CookieBar() {
               <button
                 type="button"
                 onClick={() => accept(false)}
-                className="press inline-flex min-h-11 items-center justify-center border border-line px-4 text-sm"
+                className="press btn btn-line"
               >
                 Jen nezbytné
               </button>
               <button
                 type="button"
                 onClick={() => accept(true)}
-                className="press inline-flex min-h-11 items-center justify-center bg-field px-4 text-sm text-field-fg"
+                className="press btn btn-solid"
               >
                 Povolit měření
               </button>

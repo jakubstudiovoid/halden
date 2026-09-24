@@ -33,13 +33,13 @@ function ApproachPage() {
         {steps.map((step) => (
           <li key={step.index} className="grid gap-4 border-t border-line py-8 md:grid-cols-12">
             <span className="text-sm text-muted tabular-nums md:col-span-2">{step.index}</span>
-            <h2 className="text-2xl font-medium tracking-tight md:col-span-3">{step.title}</h2>
+            <h2 className="text-2xl font-normal tracking-tight md:col-span-3">{step.title}</h2>
             <p className="leading-relaxed text-muted md:col-span-7">{step.text}</p>
           </li>
         ))}
       </ol>
       <section className="mx-auto max-w-6xl px-6 py-20 md:px-10" aria-labelledby="zasady">
-        <h2 id="zasady" className="text-3xl font-medium tracking-tight">
+        <h2 id="zasady" className="text-3xl font-normal tracking-tight">
           Čtyři zásady, které se nedají obejít dodatkem.
         </h2>
         <ul className="mt-12 grid gap-10 md:grid-cols-2">
@@ -65,7 +65,7 @@ function ApproachPage() {
         </dl>
         <Link
           to="/kontakt"
-          className="press mt-12 inline-flex min-h-11 items-center bg-field px-5 text-sm text-field-fg"
+          className="press btn btn-solid mt-12"
         >
           Napsat
         </Link>

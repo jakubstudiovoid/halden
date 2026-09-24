@@ -23,7 +23,7 @@ function CookiesPage() {
       />
       <div className="mx-auto max-w-3xl space-y-10 px-6 pb-16 leading-relaxed">
         <section>
-          <h2 className="text-2xl font-medium tracking-tight">Nezbytné</h2>
+          <h2 className="text-2xl font-normal tracking-tight">Nezbytné</h2>
           <p className="mt-4 text-muted">
             Klíč halden-consent si pamatuje, jestli jste volbu už udělali. Klíč halden-theme si pamatuje
             světlý nebo tmavý režim. Bez nich by se lišta ptala při každé návštěvě a režim by se vracel do
@@ -31,7 +31,7 @@ function CookiesPage() {
           </p>
         </section>
         <section>
-          <h2 className="text-2xl font-medium tracking-tight">Měření</h2>
+          <h2 className="text-2xl font-normal tracking-tight">Měření</h2>
           <p className="mt-4 text-muted">
             Když měření povolíte, klíč halden-views zvýší číslo při první návštěvě dané stránky v relaci.
             Číslo nikam neodesíláme. Když měření odmítnete, klíče smažeme.{" "}
@@ -41,14 +41,14 @@ function CookiesPage() {
           </p>
         </section>
         <section>
-          <h2 className="text-2xl font-medium tracking-tight">Jak volbu změnit</h2>
+          <h2 className="text-2xl font-normal tracking-tight">Jak volbu změnit</h2>
           <p className="mt-4 text-muted">
             Otevřete nastavení. Stejné okno je v patičce každé stránky. Prohlížeč můžete také vyčistit ručně.
           </p>
           <button
             type="button"
             onClick={() => setSettingsOpen(true)}
-            className="press mt-6 inline-flex min-h-11 items-center bg-field px-5 text-sm text-field-fg"
+            className="press btn btn-solid mt-6"
           >
             Otevřít nastavení
           </button>

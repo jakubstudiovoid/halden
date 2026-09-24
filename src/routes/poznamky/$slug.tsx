@@ -45,7 +45,7 @@ function NotePage() {
             <span aria-hidden="true"> · </span>
             {note.minutes} minut čtení
           </p>
-          <h1 className="mt-6 text-4xl font-medium tracking-tight md:text-6xl">{note.title}</h1>
+          <h1 className="mt-6 text-4xl font-normal tracking-tight md:text-6xl">{note.title}</h1>
           <p className="mt-8 text-lg leading-relaxed text-muted">{note.excerpt}</p>
         </div>
       </header>
@@ -53,7 +53,7 @@ function NotePage() {
         <div className="max-w-3xl space-y-12">
           {note.sections.map((section) => (
             <section key={section.heading}>
-              <h2 className="text-2xl font-medium tracking-tight">{section.heading}</h2>
+              <h2 className="text-2xl font-normal tracking-tight">{section.heading}</h2>
               <div className="mt-5 space-y-5 leading-relaxed">
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
