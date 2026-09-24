@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { clients, facts, notes, people, practices, site } from "@/content/site";
-import { JsonLd, Photo, Reveal } from "@/components/site/ui";
+import { JsonLd, Reveal } from "@/components/site/ui";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -71,19 +71,6 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-32 md:px-16 md:py-48">
-        <div className="max-w-3xl">
-          <Photo
-            src="/media/atrium.jpg"
-            alt="Klidné kamenné atrium s vysokým oknem a kobaltovým stínem na jedné stěně."
-            width={1600}
-            height={900}
-            priority
-            caption="Prostor bez recepčního divadla. Světlo stačí."
-          />
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 pb-16 md:px-16 md:pb-24">
         <Reveal>
           <h2 className="display max-w-4xl text-4xl md:text-6xl">
             Halden není síť. Je to kancelář, ve které partner, který věc přijme, ji také vede.

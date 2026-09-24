@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Menu, Moon, Sun, X } from "lucide-react";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { nav, site } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { Mark } from "@/components/site/ui";
@@ -21,6 +21,28 @@ function ThemeButton({ className }: { className?: string }) {
       <Sun className="hidden size-4 dark:block" aria-hidden="true" />
       <Moon className="size-4 dark:hidden" aria-hidden="true" />
     </button>
+  );
+}
+
+function BrandLink({ className, children }: { className?: string; children: ReactNode }) {
+  const path = useRouterState({ select: (state) => state.location.pathname });
+  return (
+    <Link
+      to="/"
+      aria-label="Halden, úvod"
+      className={className}
+      onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (window.scrollY > 8) {
+          event.preventDefault();
+          window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+          return;
+        }
+        if (path === "/") event.preventDefault();
+      }}
+    >
+      {children}
+    </Link>
   );
 }
 
@@ -45,14 +67,12 @@ function Header() {
       )}
     >
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-8 px-6 md:px-16">
-        <Link
-          to="/"
-          aria-label="Halden, úvod"
+        <BrandLink
           className={cn("flex items-center gap-3", overField ? "text-field-fg" : "text-fg")}
         >
           <Mark tone={overField ? "on-field" : "default"} className="size-6" />
           <span className="text-xs tracking-widest">HALDEN</span>
-        </Link>
+        </BrandLink>
         <nav aria-label="Hlavní" className="hidden items-center gap-9 lg:flex">
           {nav.map((item) => {
             const active = path === item.to || path.startsWith(`${item.to}/`);
@@ -157,10 +177,10 @@ function Footer() {
     <footer className="border-t border-line">
       <div className="mx-auto grid max-w-6xl gap-16 px-6 py-28 md:grid-cols-12 md:px-16">
         <div className="md:col-span-5">
-          <div className="flex items-center gap-3">
-            <Mark className="size-7" />
-            <span className="text-xs tracking-widest">HALDEN</span>
-          </div>
+          <BrandLink className="inline-flex items-center gap-5 text-fg">
+            <Mark className="size-16" />
+            <span className="text-sm tracking-widest">HALDEN</span>
+          </BrandLink>
           <p className="mt-8 max-w-xs text-sm leading-relaxed text-muted">
             Advokátní kancelář pro rozhodnutí, která mají váhu. Praha a Vídeň, jeden standard psaní.
           </p>
@@ -200,11 +220,6 @@ function Footer() {
                 Nastavení cookies
               </button>
             </li>
-            <li>
-              <a href="/llms.txt" className="text-muted transition-colors duration-1000 hover:text-fg">
-                Pro vyhledávače
-              </a>
-            </li>
           </ul>
         </nav>
         <div className="text-sm text-muted md:col-span-3">
@@ -217,6 +232,14 @@ function Footer() {
       </div>
       <div className="mx-auto flex max-w-6xl flex-col gap-3 border-t border-line px-6 py-8 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-16">
         <p>© {new Date().getFullYear()} {site.name}</p>
+        <a
+          href="https://studiovoid.cz"
+          target="_blank"
+          rel="noreferrer"
+          className="text-xs tracking-widest uppercase transition-colors duration-1000 hover:text-fg"
+        >
+          Koncept k prodeji vytvořilo studiovoid.cz
+        </a>
         <p className="max-w-xl">
           Texty na tomto webu nejsou právní radou a nezakládají vztah advokát–klient.
         </p>

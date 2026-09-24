@@ -148,7 +148,7 @@ export const practices: Practice[] = [
       "Ticho tam, kde ticho patří, a papír tam, kde bez něj není ochrana.",
     ],
     decline: "Nezastupujeme zároveň společnost a jejího statutáře ve stejné věci.",
-    people: ["nina-berg"],
+    people: ["nils-berg"],
   },
 ];
 
@@ -236,8 +236,8 @@ export const people: Person[] = [
     matters: ["nemovitosti"],
   },
   {
-    slug: "nina-berg",
-    name: "Nina Berg",
+    slug: "nils-berg",
+    name: "Nils Berg",
     given: "NB",
     role: "Counsel",
     focus: "Práce vedení",
