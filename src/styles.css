@@ -152,7 +152,7 @@
   color: var(--btn-ink);
   background: transparent;
   border-style: solid;
-  border-width: 0.08em;
+  border-width: calc(0.08em + 0.5px);
   border-color: var(--btn-ink);
   transition:
     color 1200ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -311,6 +311,22 @@
     object-fit: fill;
     object-position: center top;
   }
+}
+
+.field-wash .kicker {
+  color: var(--field-muted);
+}
+
+.cta-plate {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  pointer-events: none;
+  user-select: none;
 }
 
 .hero-wash {

@@ -80,8 +80,9 @@ export function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-32 md:px-16 md:py-48">
-        <h2 className="reveal display max-w-4xl text-4xl md:text-6xl">{ui.quote}</h2>
+      <section className="mx-auto max-w-6xl px-6 py-32 md:px-16 md:py-48" aria-labelledby="atelier-nadpis">
+        <p className="reveal kicker">{ui.quoteKicker}</p>
+        <h2 id="atelier-nadpis" className="reveal display mt-10 max-w-4xl text-4xl md:text-6xl">{ui.quote}</h2>
         <div className="reveal mt-16 max-w-sm">
           <p className="text-sm leading-relaxed text-muted">{ui.quoteText}</p>
           <RouteLink to={links.studio} className="link-draw mt-8 inline-flex min-h-11 items-center text-sm">
@@ -131,8 +132,11 @@ export function Home() {
         </ul>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-28 md:px-16 md:py-40">
-        <p className="reveal display max-w-3xl text-4xl md:text-6xl">{ui.endQuote}</p>
+      <section className="mx-auto max-w-6xl px-6 py-28 md:px-16 md:py-40" aria-labelledby="pristup-nadpis">
+        <p className="reveal kicker">{ui.endKicker}</p>
+        <h2 id="pristup-nadpis" className="reveal display mt-10 max-w-3xl text-4xl md:text-6xl">
+          {ui.endQuote}
+        </h2>
         <p className="reveal mt-10 max-w-sm text-sm leading-relaxed text-muted">{ui.endText}</p>
         <RouteLink to={links.approach} className="reveal link-draw mt-8 inline-flex min-h-11 items-center text-sm">
           {ui.endLink}
@@ -191,10 +195,22 @@ export function Home() {
         </ul>
       </section>
 
-      <section>
-        <div className="mx-auto max-w-6xl px-6 py-28 md:px-16 md:py-44">
-          <h2 className="reveal display max-w-3xl text-4xl md:text-6xl">{ui.closing}</h2>
-          <RouteLink to={links.contact} className="reveal press btn mt-10">
+      <section className="field-wash relative isolate overflow-hidden" aria-labelledby="zaver-nadpis">
+        <img
+          src="/media/close.jpg"
+          alt=""
+          width={2128}
+          height={912}
+          className="cta-plate"
+          decoding="async"
+        />
+        <div className="hero-wash" aria-hidden="true" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 md:px-16 md:py-28">
+          <p className="reveal kicker">{ui.closingKicker}</p>
+          <h2 id="zaver-nadpis" className="reveal display mt-10 max-w-3xl text-4xl md:text-6xl">
+            {ui.closing}
+          </h2>
+          <RouteLink to={links.contact} className="reveal press btn mt-10 w-fit">
             {ui.heroCta}
           </RouteLink>
         </div>
