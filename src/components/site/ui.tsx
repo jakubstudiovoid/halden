@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useCopy, RouteLink } from "@/i18n/locale";
-import { useEffect, useRef, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 export function Mark({
@@ -29,48 +29,6 @@ export function Mark({
   );
 }
 
-export function Reveal({
-  children,
-  className,
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      el.classList.add("is-in");
-      return;
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          el.classList.add("is-in");
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.16, rootMargin: "0px 0px -6% 0px" },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={cn("reveal", className)}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
-    >
-      {children}
-    </div>
-  );
-}
-
 export function PageHeader({
   kicker,
   title,
@@ -82,10 +40,10 @@ export function PageHeader({
 }) {
   return (
     <header className="mx-auto w-full max-w-6xl px-6 pt-40 pb-24 md:px-16 md:pt-56 md:pb-32">
-      <p className="kicker">{kicker}</p>
-      <h1 className="display mt-10 max-w-3xl text-4xl text-fg md:text-7xl">{title}</h1>
+      <p className="reveal kicker">{kicker}</p>
+      <h1 className="reveal display mt-10 max-w-3xl text-4xl text-fg md:text-7xl">{title}</h1>
       {lede ? (
-        <p className="mt-10 max-w-md text-base leading-relaxed text-muted">{lede}</p>
+        <p className="reveal mt-10 max-w-md text-base leading-relaxed text-muted">{lede}</p>
       ) : null}
     </header>
   );
@@ -94,7 +52,7 @@ export function PageHeader({
 export function Crumbs({ items }: { items: { to?: string; label: string }[] }) {
   const { ui } = useCopy();
   return (
-    <nav aria-label={ui.crumbs} className="mx-auto w-full max-w-6xl px-6 pt-32 md:px-16 md:pt-36">
+    <nav aria-label={ui.crumbs} className="reveal mx-auto w-full max-w-6xl px-6 pt-32 md:px-16 md:pt-36">
       <ol className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
         {items.map((item, index) => {
           const last = index === items.length - 1;
@@ -173,7 +131,7 @@ export function Photo({
   priority?: boolean;
 }) {
   return (
-    <figure>
+    <figure className="reveal">
       <div className="photo-frame overflow-hidden">
         <img
           src={src}

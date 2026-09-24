@@ -44,30 +44,30 @@ export function NotePage() {
       />
       <header className="mx-auto w-full max-w-6xl px-6 pt-10 md:px-16">
         <div className="max-w-3xl">
-          <p className="text-sm text-muted">
+          <p className="reveal text-sm text-muted">
             <time dateTime={note.date}>{note.displayDate}</time>
             <span aria-hidden="true"> · </span>
             {note.minutes} {copy.minRead}
           </p>
-          <h1 className="mt-6 text-4xl font-normal tracking-tight md:text-6xl">{note.title}</h1>
-          <p className="mt-8 text-lg leading-relaxed text-muted">{note.excerpt}</p>
+          <h1 className="reveal mt-6 text-4xl font-normal tracking-tight md:text-6xl">{note.title}</h1>
+          <p className="reveal mt-8 text-lg leading-relaxed text-muted">{note.excerpt}</p>
         </div>
       </header>
       <div className="mx-auto mt-12 max-w-6xl px-6 md:px-16">
         <div className="max-w-3xl space-y-12">
           {note.sections.map((section) => (
             <section key={section.heading}>
-              <h2 className="text-2xl font-normal tracking-tight">{section.heading}</h2>
+              <h2 className="reveal text-2xl font-normal tracking-tight">{section.heading}</h2>
               <div className="mt-5 space-y-5 leading-relaxed">
                 {section.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
+                  <p key={paragraph} className="reveal">{paragraph}</p>
                 ))}
               </div>
             </section>
           ))}
         </div>
       </div>
-      <p className="mx-auto mt-16 max-w-6xl px-6 text-sm text-muted md:px-16">
+      <p className="reveal mx-auto mt-16 max-w-6xl px-6 text-sm text-muted md:px-16">
         <span className="block max-w-3xl">
           {copy.noteDisclaimer}{" "}
           <RouteLink to={links.contact} className="text-fg underline decoration-line underline-offset-4">

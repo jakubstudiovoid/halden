@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { JsonLd, Reveal } from "@/components/site/ui";
+import { JsonLd } from "@/components/site/ui";
 import { RouteLink, useCopy, useLinks } from "@/i18n/locale";
 
 export const Route = createFileRoute("/")({
@@ -46,14 +46,14 @@ export function Home() {
         />
         <div className="hero-wash" aria-hidden="true" />
         <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col px-6 pt-32 pb-16 md:px-16 md:pt-36 md:pb-20">
-          <div className="flex items-center justify-between gap-4 text-xs tracking-widest text-field-muted uppercase">
+          <div className="reveal flex items-center justify-between gap-4 text-xs tracking-widest text-field-muted uppercase">
             <p>{ui.office}</p>
             <p>{ui.citiesLine}</p>
           </div>
-          <h1 className="display mt-auto pt-24 text-6xl uppercase sm:text-8xl lg:text-9xl">Halden</h1>
-          <p className="mt-10 max-w-lg text-2xl leading-snug font-normal md:text-3xl">{ui.heroTitle}</p>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-field-muted">{ui.heroLede}</p>
-          <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3">
+          <h1 className="reveal display mt-auto pt-24 text-6xl uppercase sm:text-8xl lg:text-9xl">Halden</h1>
+          <p className="reveal mt-10 max-w-lg text-2xl leading-snug font-normal md:text-3xl">{ui.heroTitle}</p>
+          <p className="reveal mt-6 max-w-md text-base leading-relaxed text-field-muted">{ui.heroLede}</p>
+          <div className="reveal mt-12 flex flex-wrap items-center gap-x-8 gap-y-3">
             <RouteLink to={links.contact} className="press btn">
               {ui.heroCta}
             </RouteLink>
@@ -63,7 +63,7 @@ export function Home() {
           </div>
           <dl className="mt-20 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-field-muted/25 pt-10 md:grid-cols-4">
             {facts.map((fact) => (
-              <div key={fact.value}>
+              <div key={fact.value} className="reveal">
                 <dt className="text-xs tracking-widest text-field-muted uppercase">
                   <span className="block">{fact.lines[0]}</span>
                   <span className="block">{fact.lines[1]}</span>
@@ -76,19 +76,17 @@ export function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-32 md:px-16 md:py-48">
-        <Reveal>
-          <h2 className="display max-w-4xl text-4xl md:text-6xl">{ui.quote}</h2>
-        </Reveal>
-        <Reveal className="mt-16 max-w-sm" delay={160}>
+        <h2 className="reveal display max-w-4xl text-4xl md:text-6xl">{ui.quote}</h2>
+        <div className="reveal mt-16 max-w-sm">
           <p className="text-sm leading-relaxed text-muted">{ui.quoteText}</p>
           <RouteLink to={links.studio} className="link-draw mt-8 inline-flex min-h-11 items-center text-sm">
             {ui.quoteLink}
           </RouteLink>
-        </Reveal>
+        </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-24 md:px-16 md:py-40" aria-labelledby="oblasti-nadpis">
-        <div className="mb-16 flex items-end justify-between gap-6">
+        <div className="reveal mb-16 flex items-end justify-between gap-6">
           <h2 id="oblasti-nadpis" className="kicker">
             {ui.practicesKicker}
           </h2>
@@ -98,7 +96,7 @@ export function Home() {
         </div>
         <ul>
           {practices.map((item) => (
-            <li key={item.slug} className="border-t border-line">
+            <li key={item.slug} className="reveal border-t border-line">
               <RouteLink
                 to={links.practice(item.slug)}
                 className="group grid gap-3 py-8 md:grid-cols-12 md:items-baseline md:gap-8 md:py-10"
@@ -115,13 +113,13 @@ export function Home() {
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-16 px-6 py-12 md:grid-cols-12 md:px-16 md:py-28">
-        <div className="md:col-span-4">
+        <div className="reveal md:col-span-4">
           <h2 className="display text-3xl md:text-4xl">{ui.clientsTitle}</h2>
           <p className="mt-8 max-w-xs text-sm leading-relaxed text-muted">{ui.clientsText}</p>
         </div>
         <ul className="md:col-span-6 md:col-start-7">
           {clients.map((client) => (
-            <li key={client} className="border-t border-line py-5 text-lg font-normal last:border-b">
+            <li key={client} className="reveal border-t border-line py-5 text-lg font-normal last:border-b">
               {client}
             </li>
           ))}
@@ -129,15 +127,15 @@ export function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-28 md:px-16 md:py-40">
-        <p className="display max-w-3xl text-4xl md:text-6xl">{ui.endQuote}</p>
-        <p className="mt-10 max-w-sm text-sm leading-relaxed text-muted">{ui.endText}</p>
-        <RouteLink to={links.approach} className="link-draw mt-8 inline-flex min-h-11 items-center text-sm">
+        <p className="reveal display max-w-3xl text-4xl md:text-6xl">{ui.endQuote}</p>
+        <p className="reveal mt-10 max-w-sm text-sm leading-relaxed text-muted">{ui.endText}</p>
+        <RouteLink to={links.approach} className="reveal link-draw mt-8 inline-flex min-h-11 items-center text-sm">
           {ui.endLink}
         </RouteLink>
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-12 md:px-16 md:py-20" aria-labelledby="lide-nadpis">
-        <div className="flex items-end justify-between gap-6">
+        <div className="reveal flex items-end justify-between gap-6">
           <h2 id="lide-nadpis" className="kicker">
             {ui.peopleKicker}
           </h2>
@@ -147,7 +145,7 @@ export function Home() {
         </div>
         <ul className="mt-12 border-t border-line">
           {people.map((person) => (
-            <li key={person.slug} className="border-b border-line">
+            <li key={person.slug} className="reveal border-b border-line">
               <RouteLink
                 to={links.person(person.slug)}
                 className="group grid items-baseline gap-y-2 py-7 md:grid-cols-12 md:py-8"
@@ -166,12 +164,12 @@ export function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-24 md:px-16 md:py-36" aria-labelledby="poznamky-nadpis">
-        <h2 id="poznamky-nadpis" className="kicker">
+        <h2 id="poznamky-nadpis" className="reveal kicker">
           {ui.notesKicker}
         </h2>
         <ul className="mt-12 border-t border-line">
           {notes.map((note) => (
-            <li key={note.slug} className="border-b border-line">
+            <li key={note.slug} className="reveal border-b border-line">
               <RouteLink
                 to={links.note(note.slug)}
                 className="group grid gap-3 py-7 md:grid-cols-12 md:items-baseline md:py-8"
@@ -190,8 +188,8 @@ export function Home() {
 
       <section>
         <div className="mx-auto max-w-6xl px-6 py-28 md:px-16 md:py-44">
-          <h2 className="display max-w-3xl text-4xl md:text-6xl">{ui.closing}</h2>
-          <RouteLink to={links.contact} className="link-draw mt-10 inline-flex min-h-11 items-center text-sm">
+          <h2 className="reveal display max-w-3xl text-4xl md:text-6xl">{ui.closing}</h2>
+          <RouteLink to={links.contact} className="reveal link-draw mt-10 inline-flex min-h-11 items-center text-sm">
             {ui.contact}
           </RouteLink>
         </div>

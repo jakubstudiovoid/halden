@@ -63,10 +63,10 @@ function NotFound() {
   const links = useLinks();
   return (
     <div className="mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col justify-center px-6 pt-24 md:px-16">
-      <p className="text-sm text-muted">404</p>
-      <h1 className="mt-6 max-w-xl text-4xl font-normal tracking-tight md:text-6xl">{ui.notFoundTitle}</h1>
-      <p className="mt-6 max-w-lg text-muted">{ui.notFoundText}</p>
-      <div className="mt-10 flex flex-wrap gap-6">
+      <p className="reveal text-sm text-muted">404</p>
+      <h1 className="reveal mt-6 max-w-xl text-4xl font-normal tracking-tight md:text-6xl">{ui.notFoundTitle}</h1>
+      <p className="reveal mt-6 max-w-lg text-muted">{ui.notFoundText}</p>
+      <div className="reveal mt-10 flex flex-wrap gap-6">
         <RouteLink to={links.home} className="press btn btn-solid">
           {ui.notFoundHome}
         </RouteLink>

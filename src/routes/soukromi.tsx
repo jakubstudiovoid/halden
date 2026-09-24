@@ -16,17 +16,17 @@ export function PrivacyPage() {
     <>
       <PageHeader kicker={copy.privacyKicker} title={copy.privacyTitle} lede={copy.privacyLede} />
       <div className="mx-auto max-w-3xl space-y-10 px-6 pb-24 text-base leading-relaxed">
-        <section>
+        <section className="reveal">
           <h2 className="text-2xl font-normal tracking-tight">{copy.whoTitle}</h2>
           <p className="mt-4 text-muted">
             {copy.whoBefore} {site.legalName}. {copy.whoAfter} {site.email}. {copy.whoNote}
           </p>
         </section>
-        <section>
+        <section className="reveal">
           <h2 className="text-2xl font-normal tracking-tight">{copy.formTitle}</h2>
           <p className="mt-4 text-muted">{copy.formBody}</p>
         </section>
-        <section>
+        <section className="reveal">
           <h2 className="text-2xl font-normal tracking-tight">{copy.browserTitle}</h2>
           <p className="mt-4 text-muted">
             {copy.browserBody}{" "}
@@ -36,13 +36,13 @@ export function PrivacyPage() {
             .
           </p>
         </section>
-        <section>
+        <section className="reveal">
           <h2 className="text-2xl font-normal tracking-tight">{copy.choicesTitle}</h2>
           <p className="mt-4 text-muted">
             {copy.choicesBody} {site.email}.
           </p>
         </section>
-        <p className="text-sm text-muted">{copy.privacyDate}</p>
+        <p className="reveal text-sm text-muted">{copy.privacyDate}</p>
       </div>
     </>
   );

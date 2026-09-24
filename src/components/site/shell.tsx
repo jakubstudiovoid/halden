@@ -216,14 +216,14 @@ function Footer() {
   return (
     <footer className="border-t border-line">
       <div className="mx-auto grid max-w-6xl gap-16 px-6 py-28 md:grid-cols-12 md:px-16">
-        <div className="md:col-span-5">
+        <div className="reveal md:col-span-5">
           <BrandLink className="brand-lockup text-fg">
             <Mark />
             <span>HALDEN</span>
           </BrandLink>
           <p className="mt-8 max-w-xs text-sm leading-relaxed text-muted">{ui.footerBlurb}</p>
         </div>
-        <nav aria-label={ui.navFooter} className="grid grid-cols-2 gap-8 text-sm md:col-span-4">
+        <nav aria-label={ui.navFooter} className="reveal grid grid-cols-2 gap-8 text-sm md:col-span-4">
           <ul className="space-y-3">
             {nav.map((item) => (
               <li key={item.to}>
@@ -260,7 +260,7 @@ function Footer() {
             </li>
           </ul>
         </nav>
-        <div className="text-sm text-muted md:col-span-3">
+        <div className="reveal text-sm text-muted md:col-span-3">
           <p>{ui.meetPrague}</p>
           <p className="mt-2">{ui.meetVienna}</p>
           <a href={`mailto:${site.email}`} className="mt-6 inline-flex min-h-11 items-center text-fg">
@@ -268,7 +268,7 @@ function Footer() {
           </a>
         </div>
       </div>
-      <div className="mx-auto flex max-w-6xl flex-col gap-3 border-t border-line px-6 py-8 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-16">
+      <div className="reveal mx-auto flex max-w-6xl flex-col gap-3 border-t border-line px-6 py-8 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-16">
         <p>© {new Date().getFullYear()} {site.name}</p>
         <a
           href="https://studiovoid.cz"
@@ -356,6 +356,39 @@ function CookieBar() {
   );
 }
 
+function useContentReveal() {
+  const path = useRouterState({ select: (state) => state.location.pathname });
+  useEffect(() => {
+    const nodes = Array.from(document.querySelectorAll<HTMLElement>("#obsah .reveal, footer .reveal"));
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      for (const node of nodes) node.classList.add("is-in");
+      return;
+    }
+    let batch = 0;
+    let last = 0;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const now = performance.now();
+        if (now - last > 140) batch = 0;
+        last = now;
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        for (const entry of visible) {
+          const el = entry.target as HTMLElement;
+          el.style.transitionDelay = `${Math.min(batch, 5) * 110}ms`;
+          batch += 1;
+          el.classList.add("is-in");
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -6% 0px" },
+    );
+    for (const node of nodes) observer.observe(node);
+    return () => observer.disconnect();
+  }, [path]);
+}
+
 export function Shell({ children }: { children: ReactNode }) {
   const { ready, consent } = usePrefs();
   const locale = useLocale();
@@ -363,6 +396,7 @@ export function Shell({ children }: { children: ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
+  useContentReveal();
   const { ui } = useCopy();
   return (
     <>

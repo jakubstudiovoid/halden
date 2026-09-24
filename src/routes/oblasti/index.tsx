@@ -17,7 +17,7 @@ export function PracticesPage() {
       <PageHeader kicker={copy.kickerPractices} title={copy.practicesTitle} lede={copy.practicesLede} />
       <ul className="mx-auto max-w-6xl border-b border-line px-6 pb-24 md:px-16">
         {practices.map((item) => (
-          <li key={item.slug}>
+          <li key={item.slug} className="reveal">
             <RouteLink
               to={links.practice(item.slug)}
               className="group grid gap-3 border-t border-line py-8 md:grid-cols-12 md:items-baseline"

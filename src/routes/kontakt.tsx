@@ -87,7 +87,7 @@ export function ContactPage() {
       <div className="mx-auto grid max-w-6xl gap-16 px-6 pb-24 md:grid-cols-12 md:px-16">
         <div className="md:col-span-7">
           {status === "sent" ? (
-            <p role="status" className="max-w-xl text-2xl font-normal tracking-tight">
+            <p role="status" className="reveal max-w-xl text-2xl font-normal tracking-tight">
               {ui.sent}
             </p>
           ) : (
@@ -128,7 +128,7 @@ export function ContactPage() {
                 error={errors.topic}
                 onChange={(topic) => setValues({ ...values, topic })}
               />
-              <div>
+              <div className="reveal">
                 <label htmlFor="message" className="text-sm text-muted">
                   {ui.message}
                 </label>
@@ -148,7 +148,7 @@ export function ContactPage() {
                   </p>
                 ) : null}
               </div>
-              <div>
+              <div className="reveal">
                 <label className="flex items-start gap-3 text-sm leading-relaxed">
                   <input
                     type="checkbox"
@@ -177,20 +177,20 @@ export function ContactPage() {
                   {ui.sendError} {site.email}.
                 </p>
               ) : null}
-              <button type="submit" disabled={status === "sending"} className="press btn btn-solid disabled:opacity-60">
+              <button type="submit" disabled={status === "sending"} className="reveal press btn btn-solid disabled:opacity-60">
                 {status === "sending" ? ui.sending : ui.send}
               </button>
             </form>
           )}
         </div>
         <aside className="md:col-span-5">
-          <p className="text-sm text-muted">{ui.direct}</p>
-          <a href={`mailto:${site.email}`} className="mt-3 inline-flex min-h-11 items-center text-lg">
+          <p className="reveal text-sm text-muted">{ui.direct}</p>
+          <a href={`mailto:${site.email}`} className="reveal mt-3 inline-flex min-h-11 items-center text-lg">
             {site.email}
           </a>
           <ul className="mt-10 space-y-8 border-t border-line pt-8">
             {cities.map((city) => (
-              <li key={city.name}>
+              <li key={city.name} className="reveal">
                 <h2 className="text-xl font-medium">{city.name}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{city.text}</p>
               </li>
@@ -265,7 +265,7 @@ function TopicField({
   }
 
   return (
-    <div ref={root} className="relative">
+    <div ref={root} className="reveal relative">
       <label id={labelId} className="text-sm text-muted">
         {label}
       </label>
@@ -340,7 +340,7 @@ function Field({
   autoComplete?: string;
 }) {
   return (
-    <div>
+    <div className="reveal">
       <label htmlFor={id} className="text-sm text-muted">
         {label}
       </label>

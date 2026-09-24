@@ -54,12 +54,12 @@ export function PracticePage() {
         ]}
       />
       <header className="mx-auto w-full max-w-6xl px-6 pt-10 pb-12 md:px-16">
-        <p className="text-sm text-muted tabular-nums">{practice.index}</p>
-        <h1 className="mt-6 max-w-3xl text-4xl font-normal tracking-tight md:text-6xl">{practice.title}</h1>
-        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted">{practice.lead}</p>
+        <p className="reveal text-sm text-muted tabular-nums">{practice.index}</p>
+        <h1 className="reveal mt-6 max-w-3xl text-4xl font-normal tracking-tight md:text-6xl">{practice.title}</h1>
+        <p className="reveal mt-8 max-w-2xl text-lg leading-relaxed text-muted">{practice.lead}</p>
       </header>
       <div className="mx-auto grid max-w-6xl gap-16 px-6 md:grid-cols-2 md:px-16">
-        <section aria-labelledby="kdy">
+        <section aria-labelledby="kdy" className="reveal">
           <h2 id="kdy" className="text-sm text-muted">
             {copy.when}
           </h2>
@@ -71,7 +71,7 @@ export function PracticePage() {
             ))}
           </ul>
         </section>
-        <section aria-labelledby="prace">
+        <section aria-labelledby="prace" className="reveal">
           <h2 id="prace" className="text-sm text-muted">
             {copy.work}
           </h2>
@@ -84,15 +84,15 @@ export function PracticePage() {
           </ul>
         </section>
       </div>
-      <p className="mx-auto mt-16 max-w-6xl px-6 text-muted md:px-16">{practice.decline}</p>
+      <p className="reveal mx-auto mt-16 max-w-6xl px-6 text-muted md:px-16">{practice.decline}</p>
       <section className="mx-auto mt-16 max-w-6xl px-6 md:px-16" aria-labelledby="vede">
-        <h2 id="vede" className="text-sm text-muted">
+        <h2 id="vede" className="reveal text-sm text-muted">
           {copy.leads}
         </h2>
         <ul className="mt-6 border-t border-line">
           {lawyers.map((person) =>
             person ? (
-              <li key={person.slug}>
+              <li key={person.slug} className="reveal">
                 <RouteLink
                   to={links.person(person.slug)}
                   className="flex flex-col gap-1 border-b border-line py-5 sm:flex-row sm:items-baseline sm:justify-between"
@@ -107,7 +107,7 @@ export function PracticePage() {
           )}
         </ul>
       </section>
-      <div className="mx-auto mt-16 max-w-6xl px-6 md:px-16">
+      <div className="reveal mx-auto mt-16 max-w-6xl px-6 md:px-16">
         <RouteLink to={links.contact} className="press btn btn-solid">
           {copy.writeAbout}
         </RouteLink>
@@ -115,7 +115,7 @@ export function PracticePage() {
       <nav aria-label={copy.areaNav} className="mx-auto mt-24 max-w-6xl px-6 md:px-16">
         <div className="flex flex-col gap-12 sm:flex-row sm:items-start sm:justify-between">
           {previous ? (
-            <RouteLink to={links.practice(previous.slug)} className="group flex max-w-md items-center gap-5">
+            <RouteLink to={links.practice(previous.slug)} className="reveal group flex max-w-md items-center gap-5">
               <PagerArrow direction="back" />
               <span className="min-w-0">
                 <span className="block text-sm text-muted">{copy.areaPrev}</span>
@@ -126,7 +126,7 @@ export function PracticePage() {
           {next ? (
             <RouteLink
               to={links.practice(next.slug)}
-              className="group flex max-w-md items-center justify-end gap-5 text-right sm:ml-auto"
+              className="reveal group flex max-w-md items-center justify-end gap-5 text-right sm:ml-auto"
             >
               <span className="min-w-0">
                 <span className="block text-sm text-muted">{copy.areaNext}</span>

@@ -30,20 +30,20 @@ export function StudioPage() {
         </div>
       </div>
       <section className="mx-auto mt-20 grid max-w-6xl gap-12 px-6 md:grid-cols-12 md:px-16">
-        <h2 className="text-3xl font-normal tracking-tight md:col-span-5">{copy.whyName}</h2>
+        <h2 className="reveal text-3xl font-normal tracking-tight md:col-span-5">{copy.whyName}</h2>
         <div className="space-y-5 leading-relaxed text-muted md:col-span-7">
-          <p>{copy.studioP1.replace("{n}", site.lawyers)}</p>
-          <p>{copy.studioP2}</p>
-          <p>{copy.studioP3}</p>
+          <p className="reveal">{copy.studioP1.replace("{n}", site.lawyers)}</p>
+          <p className="reveal">{copy.studioP2}</p>
+          <p className="reveal">{copy.studioP3}</p>
         </div>
       </section>
       <section className="mx-auto mt-20 max-w-6xl px-6 pb-24 md:px-16" aria-labelledby="mesta">
-        <h2 id="mesta" className="text-sm text-muted">
+        <h2 id="mesta" className="reveal text-sm text-muted">
           {copy.where}
         </h2>
         <ul className="mt-6 border-b border-line">
           {cities.map((city) => (
-            <li key={city.name} className="grid gap-3 border-t border-line py-7 md:grid-cols-12">
+            <li key={city.name} className="reveal grid gap-3 border-t border-line py-7 md:grid-cols-12">
               <h3 className="text-2xl font-medium md:col-span-3">{city.name}</h3>
               <p className="leading-relaxed text-muted md:col-span-7">{city.text}</p>
             </li>
@@ -51,7 +51,7 @@ export function StudioPage() {
         </ul>
         <RouteLink
           to={links.people}
-          className="mt-10 inline-flex min-h-11 items-center text-sm underline decoration-line underline-offset-4"
+          className="reveal mt-10 inline-flex min-h-11 items-center text-sm underline decoration-line underline-offset-4"
         >
           {copy.peopleBoth}
         </RouteLink>

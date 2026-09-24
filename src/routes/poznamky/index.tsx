@@ -17,7 +17,7 @@ export function NotesPage() {
       <PageHeader kicker={copy.notesKicker} title={copy.notesTitle} lede={copy.notesLede} />
       <ul className="mx-auto max-w-6xl border-b border-line px-6 pb-24 md:px-16">
         {notes.map((note) => (
-          <li key={note.slug}>
+          <li key={note.slug} className="reveal">
             <RouteLink
               to={links.note(note.slug)}
               className="group grid gap-3 border-t border-line py-8 md:grid-cols-12"

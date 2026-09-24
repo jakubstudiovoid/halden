@@ -17,7 +17,7 @@ export function PeoplePage() {
       <PageHeader kicker={copy.kickerPeople} title={copy.peopleTitle} lede={copy.peopleLede} />
       <ul className="mx-auto grid max-w-6xl gap-x-10 gap-y-14 px-6 pb-28 sm:grid-cols-2 md:px-16 lg:grid-cols-3">
         {people.map((person) => (
-          <li key={person.slug} className="border-t border-line pt-6">
+          <li key={person.slug} className="reveal border-t border-line pt-6">
             <RouteLink to={links.person(person.slug)} className="group block">
               <span className="text-xs tracking-widest text-muted">{person.given}</span>
               <span className="mt-8 block text-2xl font-normal tracking-tight transition-colors duration-1000 group-hover:text-muted">

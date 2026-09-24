@@ -47,30 +47,30 @@ export function PersonPage() {
         ]}
       />
       <header className="mx-auto grid w-full max-w-6xl gap-10 px-6 pt-12 md:grid-cols-12 md:px-16">
-        <p className="text-5xl font-normal tracking-tight text-muted tabular-nums md:col-span-3">{person.given}</p>
+        <p className="reveal text-5xl font-normal tracking-tight text-muted tabular-nums md:col-span-3">{person.given}</p>
         <div className="md:col-span-9">
-          <h1 className="text-4xl font-normal tracking-tight md:text-6xl">{person.name}</h1>
-          <p className="mt-4 text-muted">
+          <h1 className="reveal text-4xl font-normal tracking-tight md:text-6xl">{person.name}</h1>
+          <p className="reveal mt-4 text-muted">
             {person.role} · {person.focus}
           </p>
-          <p className="mt-2 text-sm text-muted">
+          <p className="reveal mt-2 text-sm text-muted">
             {person.city} · {person.languages}
           </p>
           <div className="mt-10 max-w-2xl space-y-5 text-lg leading-relaxed">
             {person.bio.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+              <p key={paragraph} className="reveal">{paragraph}</p>
             ))}
           </div>
         </div>
       </header>
       <section className="mx-auto mt-16 max-w-6xl px-6 md:px-16" aria-labelledby="oblast">
-        <h2 id="oblast" className="text-sm text-muted">
+        <h2 id="oblast" className="reveal text-sm text-muted">
           {copy.area}
         </h2>
         <ul className="mt-4 border-t border-line">
           {matters.map((practice) =>
             practice ? (
-              <li key={practice.slug}>
+              <li key={practice.slug} className="reveal">
                 <RouteLink
                   to={links.practice(practice.slug)}
                   className="flex items-baseline justify-between gap-4 border-b border-line py-5"
@@ -83,7 +83,7 @@ export function PersonPage() {
           )}
         </ul>
       </section>
-      <div className="mx-auto mt-12 max-w-6xl px-6 md:px-16">
+      <div className="reveal mx-auto mt-12 max-w-6xl px-6 md:px-16">
         <RouteLink to={links.contact} className="press btn btn-solid">
           {copy.writeTo} {person.name.split(" ")[0]}
         </RouteLink>
