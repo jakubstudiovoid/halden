@@ -226,21 +226,27 @@
     color 980ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+::view-transition-group(root),
+::view-transition-image-pair(root) {
+  background-color: var(--bg);
+}
+
 ::view-transition-group(root) {
-  animation-duration: 1.4s;
+  animation-duration: 0.66s;
 }
 
 ::view-transition-old(root) {
   animation-name: vt-fade-out;
-  animation-duration: 1.4s;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
+  animation-duration: 0.26s;
+  animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  animation-fill-mode: forwards;
 }
 
 ::view-transition-new(root) {
   animation-name: vt-fade-in;
-  animation-duration: 1.4s;
-  animation-timing-function: linear;
+  animation-duration: 0.32s;
+  animation-delay: 0.34s;
+  animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   animation-fill-mode: both;
 }
 
