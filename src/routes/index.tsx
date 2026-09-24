@@ -189,8 +189,8 @@ export function Home() {
       <section>
         <div className="mx-auto max-w-6xl px-6 py-28 md:px-16 md:py-44">
           <h2 className="reveal display max-w-3xl text-4xl md:text-6xl">{ui.closing}</h2>
-          <RouteLink to={links.contact} className="reveal link-draw mt-10 inline-flex min-h-11 items-center text-sm">
-            {ui.contact}
+          <RouteLink to={links.contact} className="reveal press btn mt-10">
+            {ui.heroCta}
           </RouteLink>
         </div>
       </section>

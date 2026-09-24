@@ -476,6 +476,8 @@ export const ui = {
   openMenu: "Otevřít menu",
   closeMenu: "Zavřít menu",
   theme: "Přepnout barevný režim",
+  themeLight: "Světlý režim",
+  themeDark: "Tmavý režim",
   toEnglish: "English",
   toCzech: "Česky",
   navMain: "Hlavní",

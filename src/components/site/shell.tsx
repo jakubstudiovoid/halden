@@ -1,27 +1,29 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Menu, Moon, Sun, X } from "lucide-react";
-import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
+import { Menu, X } from "lucide-react";
+import { useEffect, useLayoutEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { Mark } from "@/components/site/ui";
 import { toggleTheme, usePrefs } from "@/components/site/prefs";
 import { localeFromPath, RouteLink, swapLocale, useCopy, useLinks, useLocale } from "@/i18n/locale";
 
-function ThemeButton({ className }: { className?: string }) {
+function ThemeWord() {
   const { ui } = useCopy();
+  const [light, setLight] = useState(false);
+  useLayoutEffect(() => {
+    setLight(document.documentElement.dataset.theme === "light");
+  }, []);
   return (
     <button
       type="button"
-      aria-label={ui.theme}
-      onClick={toggleTheme}
-      className={cn(
-        "press inline-flex size-11 items-center justify-center text-fg transition-colors duration-1000 hover:text-muted",
-        className,
-      )}
+      onClick={() => {
+        toggleTheme();
+        setLight((value) => !value);
+      }}
+      className="inline-flex min-h-11 items-center text-xs tracking-widest text-muted uppercase transition-colors duration-1000 hover:text-fg"
     >
-      <Sun className="hidden size-4 dark:block" aria-hidden="true" />
-      <Moon className="size-4 dark:hidden" aria-hidden="true" />
+      {light ? ui.themeDark : ui.themeLight}
     </button>
   );
 }
@@ -142,7 +144,6 @@ function Header() {
             {ui.contact}
           </RouteLink>
           <LocaleSwitch overField={overField} />
-          <ThemeButton className={overField ? "text-field-fg hover:text-field-muted" : undefined} />
           <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger asChild>
               <button
@@ -197,7 +198,6 @@ function Header() {
                   <p className="text-sm text-muted">{ui.citiesLine}</p>
                   <div className="flex items-center">
                     <LocaleSwitch />
-                    <ThemeButton />
                   </div>
                 </div>
               </Dialog.Content>
@@ -270,6 +270,7 @@ function Footer() {
       </div>
       <div className="reveal mx-auto flex max-w-6xl flex-col gap-3 border-t border-line px-6 py-8 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-16">
         <p>© {new Date().getFullYear()} {site.name}</p>
+        <ThemeWord />
         <a
           href="https://studiovoid.cz"
           target="_blank"

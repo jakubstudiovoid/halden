@@ -374,6 +374,8 @@ export const ui = {
   openMenu: "Open menu",
   closeMenu: "Close menu",
   theme: "Switch colour mode",
+  themeLight: "Light mode",
+  themeDark: "Dark mode",
   toEnglish: "English",
   toCzech: "Česky",
   navMain: "Main",
