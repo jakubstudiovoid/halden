@@ -310,7 +310,7 @@
   pointer-events: none;
   background:
     linear-gradient(180deg, rgb(18 28 40 / 0.2) 0%, rgb(18 28 40 / 0.08) 38%, rgb(16 24 36 / 0.72) 100%),
-    linear-gradient(168deg, rgb(68 94 118 / 0.5) 0%, rgb(61 84 112 / 0.46) 44%, rgb(36 52 70 / 0.58) 100%);
+    linear-gradient(168deg, rgb(48 98 146 / 0.56) 0%, rgb(42 90 140 / 0.54) 44%, rgb(24 58 98 / 0.64) 100%);
 }
 
 .press {
