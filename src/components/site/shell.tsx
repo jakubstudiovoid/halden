@@ -341,14 +341,14 @@ function useContentReveal() {
     const observer = new IntersectionObserver(
       (entries) => {
         const now = performance.now();
-        if (now - last > 140) batch = 0;
+        if (now - last > 240) batch = 0;
         last = now;
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
         for (const entry of visible) {
           const el = entry.target as HTMLElement;
-          el.style.transitionDelay = `${Math.min(batch, 5) * 110}ms`;
+          el.style.transitionDelay = `${Math.min(batch, 5) * 180}ms`;
           batch += 1;
           el.classList.add("is-in");
           observer.unobserve(el);
