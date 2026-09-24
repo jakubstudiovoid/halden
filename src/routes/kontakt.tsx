@@ -1,11 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import { z } from "zod";
 import { topicIds } from "@/content/site";
 import { submitInquiry } from "@/lib/inquiry";
 import { pageHead } from "@/lib/meta";
 import { JsonLd, PageHeader } from "@/components/site/ui";
 import { RouteLink, useCopy, useLinks } from "@/i18n/locale";
+import { cn } from "@/lib/cn";
 
 export const Route = createFileRoute("/kontakt")({
   head: () =>
@@ -119,32 +120,14 @@ export function ContactPage() {
                 error={errors.email}
                 onChange={(email) => setValues({ ...values, email })}
               />
-              <div>
-                <label htmlFor="topic" className="text-sm text-muted">
-                  {ui.topic}
-                </label>
-                <select
-                  id="topic"
-                  name="topic"
-                  value={values.topic}
-                  onChange={(event) => setValues({ ...values, topic: event.target.value })}
-                  aria-invalid={Boolean(errors.topic)}
-                  aria-describedby={errors.topic ? "topic-error" : undefined}
-                  className="line-field mt-2"
-                >
-                  <option value="">{ui.choose}</option>
-                  {ui.topics.map((topic) => (
-                    <option key={topic.id} value={topic.id}>
-                      {topic.label}
-                    </option>
-                  ))}
-                </select>
-                {errors.topic ? (
-                  <p id="topic-error" className="mt-2 text-sm text-fg">
-                    {errors.topic}
-                  </p>
-                ) : null}
-              </div>
+              <TopicField
+                label={ui.topic}
+                choose={ui.choose}
+                topics={ui.topics}
+                value={values.topic}
+                error={errors.topic}
+                onChange={(topic) => setValues({ ...values, topic })}
+              />
               <div>
                 <label htmlFor="message" className="text-sm text-muted">
                   {ui.message}
@@ -216,6 +199,126 @@ export function ContactPage() {
         </aside>
       </div>
     </>
+  );
+}
+
+function TopicField({
+  label,
+  choose,
+  topics,
+  value,
+  error,
+  onChange,
+}: {
+  label: string;
+  choose: string;
+  topics: readonly { id: string; label: string }[];
+  value: string;
+  error?: string;
+  onChange: (value: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(0);
+  const root = useRef<HTMLDivElement>(null);
+  const list = useRef<HTMLUListElement>(null);
+  const labelId = useId();
+  const selected = topics.find((topic) => topic.id === value);
+
+  useEffect(() => {
+    if (!open) return;
+    const index = Math.max(0, topics.findIndex((topic) => topic.id === value));
+    setActive(index);
+    list.current?.focus();
+    function onPointer(event: PointerEvent) {
+      if (!root.current?.contains(event.target as Node)) setOpen(false);
+    }
+    document.addEventListener("pointerdown", onPointer);
+    return () => document.removeEventListener("pointerdown", onPointer);
+  }, [open, topics, value]);
+
+  function pick(id: string) {
+    onChange(id);
+    setOpen(false);
+  }
+
+  function onListKey(event: KeyboardEvent<HTMLUListElement>) {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setActive((index) => Math.min(topics.length - 1, index + 1));
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setActive((index) => Math.max(0, index - 1));
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      setActive(0);
+    } else if (event.key === "End") {
+      event.preventDefault();
+      setActive(topics.length - 1);
+    } else if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      const topic = topics[active];
+      if (topic) pick(topic.id);
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  return (
+    <div ref={root} className="relative">
+      <label id={labelId} className="text-sm text-muted">
+        {label}
+      </label>
+      <button
+        type="button"
+        className="line-field mt-2 flex items-center justify-between gap-6 text-left"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-labelledby={labelId}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? "topic-error" : undefined}
+        onClick={() => setOpen((current) => !current)}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            setOpen(true);
+          }
+        }}
+      >
+        <span className={selected ? undefined : "text-muted"}>{selected ? selected.label : choose}</span>
+        <span aria-hidden="true" className={cn("topic-mark", open && "is-open")} />
+      </button>
+      {open ? (
+        <ul
+          ref={list}
+          role="listbox"
+          aria-labelledby={labelId}
+          tabIndex={-1}
+          onKeyDown={onListKey}
+          className="topic-menu"
+        >
+          {topics.map((topic, index) => (
+            <li key={topic.id} role="none" className="px-4">
+              <button
+                type="button"
+                role="option"
+                aria-selected={topic.id === value}
+                className={cn("topic-option", (topic.id === value || index === active) && "is-current")}
+                onMouseEnter={() => setActive(index)}
+                onClick={() => pick(topic.id)}
+              >
+                {topic.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      {error ? (
+        <p id="topic-error" className="mt-2 text-sm text-fg">
+          {error}
+        </p>
+      ) : null}
+    </div>
   );
 }
 
