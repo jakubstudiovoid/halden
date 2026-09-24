@@ -46,11 +46,13 @@ export function Home() {
         />
         <div className="hero-wash" aria-hidden="true" />
         <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col px-6 pt-32 pb-16 md:px-16 md:pt-36 md:pb-20">
-          <div className="reveal flex items-center justify-between gap-4 text-xs tracking-widest text-field-muted uppercase">
-            <p>{ui.office}</p>
-            <p>{ui.citiesLine}</p>
+          <div className="mt-auto">
+            <div className="reveal flex items-center justify-between gap-4 text-xs tracking-widest text-field-muted uppercase">
+              <p>{ui.office}</p>
+              <p>{ui.citiesLine}</p>
+            </div>
+            <h1 className="reveal display mt-8 text-6xl uppercase sm:text-8xl lg:text-9xl">Halden</h1>
           </div>
-          <h1 className="reveal display mt-auto pt-24 text-6xl uppercase sm:text-8xl lg:text-9xl">Halden</h1>
           <p className="reveal mt-10 max-w-lg text-2xl leading-snug font-normal md:text-3xl">{ui.heroTitle}</p>
           <p className="reveal mt-6 max-w-md text-base leading-relaxed text-field-muted">{ui.heroLede}</p>
           <div className="reveal mt-12 flex flex-wrap items-center gap-x-8 gap-y-3">
