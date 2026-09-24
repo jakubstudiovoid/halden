@@ -1,0 +1,140 @@
+@import "tailwindcss";
+@import "@fontsource-variable/instrument-sans/wght.css";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-field: var(--field);
+  --color-field-deep: var(--field-deep);
+  --color-field-fg: var(--field-fg);
+  --color-field-muted: var(--field-muted);
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #08101c;
+  --fg: #eceae4;
+  --muted: #b4bdd0;
+  --surface: #10192b;
+  --line: #2a364c;
+  --field: #1a3cb8;
+  --field-deep: #14328f;
+  --field-fg: #f6f3ec;
+  --field-muted: #d9e0f7;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f3f0e8;
+  --fg: #12182a;
+  --muted: #4a5368;
+  --surface: #e7e2d6;
+  --line: #d2cbbd;
+  --field: #1a3cb8;
+  --field-deep: #14328f;
+  --field-fg: #f6f3ec;
+  --field-muted: #d9e0f7;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-synthesis: none;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--fg);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--fg);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--field);
+    color: var(--field-fg);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 900ms cubic-bezier(0.2, 0, 0, 1),
+    transform 900ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.photo {
+  transition: transform 800ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.photo-frame:hover .photo {
+  transform: scale(1.02);
+}
+
+.press {
+  transition: scale 150ms ease-out;
+}
+
+.press:active {
+  scale: 0.96;
+}
+
+.field-wash {
+  background: linear-gradient(180deg, var(--field) 0%, var(--field-deep) 100%);
+  color: var(--field-fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .photo,
+  .press {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .photo-frame:hover .photo,
+  .press:active {
+    transform: none;
+    scale: 1;
+  }
+}

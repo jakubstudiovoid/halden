@@ -1,0 +1,88 @@
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { getPerson, getPractice } from "@/content/site";
+import { pageHead } from "@/lib/meta";
+import { Crumbs, JsonLd } from "@/components/site/ui";
+
+export const Route = createFileRoute("/lide/$slug")({
+  loader: ({ params }) => {
+    const person = getPerson(params.slug);
+    if (!person) throw notFound();
+    return person;
+  },
+  head: ({ loaderData }) =>
+    loaderData
+      ? pageHead(loaderData.name, `${loaderData.role}. ${loaderData.focus}. ${loaderData.city}.`)
+      : pageHead("Lidé", "Lidé kanceláře Halden."),
+  component: PersonPage,
+});
+
+function PersonPage() {
+  const person = Route.useLoaderData();
+  const matters = person.matters
+    .map((slug) => getPractice(slug))
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+
+  return (
+    <article className="pb-24">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: person.name,
+          jobTitle: person.role,
+          worksFor: { "@type": "LegalService", name: "Halden" },
+          knowsLanguage: person.languages.split(", "),
+        }}
+      />
+      <Crumbs
+        items={[{ to: "/", label: "Halden" }, { to: "/lide", label: "Lidé" }, { label: person.name }]}
+      />
+      <header className="mx-auto grid w-full max-w-6xl gap-10 px-6 pt-12 md:grid-cols-12 md:px-10">
+        <p className="text-5xl font-medium tracking-tight text-muted tabular-nums md:col-span-3">
+          {person.given}
+        </p>
+        <div className="md:col-span-9">
+          <h1 className="text-4xl font-medium tracking-tight md:text-6xl">{person.name}</h1>
+          <p className="mt-4 text-muted">
+            {person.role} · {person.focus}
+          </p>
+          <p className="mt-2 text-sm text-muted">
+            {person.city} · {person.languages}
+          </p>
+          <div className="mt-10 max-w-2xl space-y-5 text-lg leading-relaxed">
+            {person.bio.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      </header>
+      <section className="mx-auto mt-16 max-w-6xl px-6 md:px-10" aria-labelledby="oblast">
+        <h2 id="oblast" className="text-sm text-muted">
+          Oblast
+        </h2>
+        <ul className="mt-4 border-t border-line">
+          {matters.map((practice) => (
+            <li key={practice.slug}>
+              <Link
+                to="/oblasti/$slug"
+                params={{ slug: practice.slug }}
+                className="flex items-baseline justify-between gap-4 border-b border-line py-5"
+              >
+                <span className="text-xl font-medium">{practice.title}</span>
+                <span className="text-sm text-muted">{practice.index}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <div className="mx-auto mt-12 max-w-6xl px-6 md:px-10">
+        <Link
+          to="/kontakt"
+          className="press inline-flex min-h-11 items-center bg-field px-5 text-sm text-field-fg"
+        >
+          Napsat {person.name.split(" ")[0]}
+        </Link>
+      </div>
+    </article>
+  );
+}
