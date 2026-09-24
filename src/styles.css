@@ -135,36 +135,50 @@
   background-size: 100% 1px;
 }
 
-.btn {
+.btn,
+.btn-line,
+.btn-solid {
+  --btn-ink: var(--fg);
+  --btn-on: var(--bg);
   display: inline-flex;
   min-height: 2.75rem;
   align-items: center;
+  justify-content: center;
   padding-inline: 1.35rem;
   font-size: 0.75rem;
+  font-weight: 400;
   letter-spacing: 0.14em;
+  line-height: 1;
   text-transform: uppercase;
-}
-
-.btn-solid {
-  background: var(--field);
-  color: var(--field-fg);
-  transition: background-color 600ms cubic-bezier(0.2, 0, 0, 1);
-}
-
-.btn-solid:hover {
-  background: var(--field-deep);
-}
-
-.btn-line {
-  border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+  color: var(--btn-ink);
+  background: transparent;
+  border-style: solid;
+  border-width: 0.08em;
+  border-color: var(--btn-ink);
   transition:
-    background-color 600ms cubic-bezier(0.2, 0, 0, 1),
-    color 600ms cubic-bezier(0.2, 0, 0, 1);
+    background-color 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 680ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.btn-line:hover {
-  background: var(--field-fg);
-  color: var(--field);
+.field-wash .btn,
+.field-wash .btn-line,
+.field-wash .btn-solid {
+  --btn-ink: var(--field-fg);
+  --btn-on: var(--field);
+}
+
+.btn:hover,
+.btn-line:hover,
+.btn-solid:hover {
+  background: var(--btn-ink);
+  color: var(--btn-on);
+}
+
+.btn:disabled,
+.btn-line:disabled,
+.btn-solid:disabled {
+  opacity: 0.45;
+  pointer-events: none;
 }
 
 .line-field {
@@ -191,7 +205,7 @@
 }
 
 .field-wash {
-  background: linear-gradient(180deg, #1b3eae 0%, #16348f 38%, #0b1738 100%);
+  background: linear-gradient(168deg, #2c52d4 0%, #1a3cb8 46%, #10245c 100%);
   color: var(--field-fg);
 }
 
@@ -206,8 +220,8 @@
 .press.btn {
   transition:
     scale 150ms ease-out,
-    background-color 600ms cubic-bezier(0.2, 0, 0, 1),
-    color 600ms cubic-bezier(0.2, 0, 0, 1);
+    background-color 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 680ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -223,5 +237,12 @@
   .press:active {
     transform: none;
     scale: 1;
+  }
+
+  .btn,
+  .btn-line,
+  .btn-solid,
+  .press.btn {
+    transition: none;
   }
 }

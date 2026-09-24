@@ -29,26 +29,34 @@ function Home() {
         }}
       />
       <section className="field-wash">
-        <div className="mx-auto flex min-h-svh max-w-6xl flex-col px-6 pt-28 pb-28 md:px-16 md:pt-32 md:pb-14">
-          <div className="flex items-center justify-between gap-6 text-xs tracking-widest text-field-muted uppercase">
+        <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 pt-32 pb-16 md:px-16 md:pt-36 md:pb-20">
+          <div className="flex items-center justify-between gap-4 text-xs tracking-widest text-field-muted uppercase">
             <p>Advokátní kancelář</p>
-            <p className="text-right">Praha · Vídeň</p>
+            <p>Praha · Vídeň</p>
           </div>
-          <div className="mt-auto max-w-5xl pt-28">
-            <h1 className="wordmark">Halden</h1>
-            <p className="mt-10 max-w-md text-xl leading-snug font-normal md:mt-12 md:text-2xl">
-              Klid v rozhodnutích, která mají váhu.
-            </p>
-            <Link
-              to="/kontakt"
-              className="link-draw mt-8 inline-flex min-h-11 items-center text-sm text-field-fg"
-            >
+          <h1 className="display mt-auto pt-24 text-6xl uppercase sm:text-8xl lg:text-9xl">Halden</h1>
+          <p className="mt-10 max-w-lg text-2xl leading-snug font-normal md:text-3xl">
+            Klid v rozhodnutích, která mají váhu.
+          </p>
+          <p className="mt-6 max-w-md text-base leading-relaxed text-field-muted">
+            Zastupujeme vlastníky, vedení a rodiny. Málo věcí najednou. Každou do konce.
+          </p>
+          <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3">
+            <Link to="/kontakt" className="press btn">
               Domluvit rozhovor
             </Link>
+            <Link to="/pristup" className="link-draw inline-flex min-h-11 items-center text-sm text-field-fg">
+              Jak pracujeme
+            </Link>
           </div>
-          <p className="mt-20 text-xs tracking-widest text-field-muted uppercase">
-            {facts[0]?.value} · {facts[1]?.value} · {facts[3]?.value}
-          </p>
+          <dl className="mt-20 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-field-muted/25 pt-10 md:grid-cols-4">
+            {facts.map((fact) => (
+              <div key={fact.label}>
+                <dt className="text-xs tracking-widest text-field-muted uppercase">{fact.label}</dt>
+                <dd className="mt-3 text-xl font-normal tabular-nums">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 

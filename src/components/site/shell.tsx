@@ -51,7 +51,7 @@ function Header() {
           className={cn("flex items-center gap-3", overField ? "text-field-fg" : "text-fg")}
         >
           <Mark tone={overField ? "on-field" : "default"} className="size-6" />
-          {overField ? null : <span className="text-xs tracking-widest">HALDEN</span>}
+          <span className="text-xs tracking-widest">HALDEN</span>
         </Link>
         <nav aria-label="Hlavní" className="hidden items-center gap-9 lg:flex">
           {nav.map((item) => {
@@ -241,26 +241,18 @@ function CookieBar() {
                 Více o cookies
               </Link>
             </p>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
+            <div className="flex flex-wrap items-center gap-3">
               <button
                 type="button"
                 onClick={() => setSettingsOpen(true)}
-                className="inline-flex min-h-11 items-center text-xs tracking-widest text-muted uppercase"
+                className="press btn"
               >
                 Nastavení
               </button>
-              <button
-                type="button"
-                onClick={() => accept(false)}
-                className="inline-flex min-h-11 items-center text-xs tracking-widest text-fg uppercase"
-              >
+              <button type="button" onClick={() => accept(false)} className="press btn">
                 Jen nezbytné
               </button>
-              <button
-                type="button"
-                onClick={() => accept(true)}
-                className="inline-flex min-h-11 items-center text-xs tracking-widest text-fg uppercase"
-              >
+              <button type="button" onClick={() => accept(true)} className="press btn">
                 Povolit měření
               </button>
             </div>
