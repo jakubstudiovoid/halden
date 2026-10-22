@@ -48,17 +48,17 @@ export function Home() {
           />
         </picture>
         <div className="hero-wash" aria-hidden="true" />
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col px-6 pt-[104vw] pb-16 md:px-16 md:pt-36 md:pb-20">
-          <div className="mt-auto">
+        <div className="relative z-10 mx-auto flex max-w-6xl flex-col px-6 pt-[92vw] pb-14 md:min-h-screen md:px-16 md:pt-36 md:pb-20">
+          <div className="md:mt-auto">
             <div className="reveal flex flex-wrap items-baseline gap-x-6 gap-y-1 text-xs tracking-widest text-field-muted uppercase">
               <p>{ui.office}</p>
               <p>{ui.citiesLine}</p>
             </div>
-            <h1 className="reveal display -ml-[0.086em] mt-8 text-6xl uppercase sm:text-8xl lg:text-9xl">Halden</h1>
+            <h1 className="reveal display -ml-[0.086em] mt-5 text-6xl uppercase sm:text-8xl md:mt-8 lg:text-9xl">Halden</h1>
           </div>
-          <p className="reveal mt-10 max-w-lg text-2xl leading-snug font-normal md:text-3xl">{ui.heroTitle}</p>
-          <p className="reveal mt-6 max-w-md text-base leading-relaxed text-field-muted">{ui.heroLede}</p>
-          <div className="reveal mt-12 flex flex-wrap items-center gap-x-8 gap-y-3">
+          <p className="reveal mt-6 max-w-lg text-2xl leading-snug font-normal md:mt-10 md:text-3xl">{ui.heroTitle}</p>
+          <p className="reveal mt-4 max-w-md text-base leading-relaxed text-field-muted md:mt-6">{ui.heroLede}</p>
+          <div className="reveal mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 md:mt-12">
             <RouteLink to={links.contact} className="press btn">
               {ui.heroCta}
             </RouteLink>
@@ -66,7 +66,7 @@ export function Home() {
               {ui.heroMore}
             </RouteLink>
           </div>
-          <dl className="mt-20 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-field-muted/25 pt-10 md:grid-cols-4">
+          <dl className="mt-12 grid grid-cols-2 gap-x-8 gap-y-8 border-t border-field-muted/25 pt-8 md:mt-20 md:grid-cols-4 md:gap-y-10 md:pt-10">
             {facts.map((fact) => (
               <div key={fact.value} className="reveal">
                 <dt className="text-xs tracking-widest text-field-muted uppercase">
