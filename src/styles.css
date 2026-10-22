@@ -310,6 +310,8 @@
     height: auto;
     object-fit: fill;
     object-position: center top;
+    -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
   }
 }
 
